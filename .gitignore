@@ -1,0 +1,9 @@
+*.core
+*.fas
+*.fasl
+*.lib
+*.lis
+build/
+configure
+config.h.in*
+
