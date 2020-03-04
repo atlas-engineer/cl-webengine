@@ -3,7 +3,12 @@
 *.fasl
 *.lib
 *.lis
+*.o
 build/
 configure
 config.h.in*
-
+.qmake.stash
+*.app
+Makefile
+*.dylib
+*.so

@@ -3,5 +3,6 @@ Bindings to Qt and WebEngine.
 * Compilation
 #+NAME: compilation
 #+BEGIN_SRC shell
-g++ -shared webengine.cpp -o libwebengine.dylib
+qmake
+make
 #+END_SRC
