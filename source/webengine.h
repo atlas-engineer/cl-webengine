@@ -19,12 +19,8 @@ class Q_DECL_EXPORT SharedLibrary :public QObject {
 public:
     SharedLibrary();
 
-private slots:
-    void onStarted();
-
 private:
     int argc;
     QCoreApplication * app;
-    QThread * thread;
     char ** argv;
 };
