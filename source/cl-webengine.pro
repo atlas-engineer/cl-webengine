@@ -1,4 +1,4 @@
-TEMPLATE = lib
+TEMPLATE = app
 TARGET = webengine
 INCLUDEPATH += .
 QT += core gui widgets

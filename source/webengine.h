@@ -1,4 +1,4 @@
-#include <QWidget>
+#include <QObject>
 #include <QApplication>
 #include <QPushButton>
 #include <QThread>
@@ -9,21 +9,22 @@
 #define EXTERNC
 #endif
 
-EXTERNC int add(int x, int y);
 EXTERNC void initialize();
 
 #undef EXTERNC
 
-class MyWidget : public QWidget
-{
+class Q_DECL_EXPORT SharedLibrary :public QObject {
     Q_OBJECT
 
 public:
-    MyWidget();
+    SharedLibrary();
 
-signals:
-    void buttonClicked();
+private slots:
+    void onStarted();
 
 private:
-    QPushButton *myButton;
+    int argc;
+    QCoreApplication * app;
+    QThread * thread;
+    char ** argv;
 };
