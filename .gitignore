@@ -12,3 +12,4 @@ config.h.in*
 Makefile
 *.dylib
 *.so
+moc_*

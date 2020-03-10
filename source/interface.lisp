@@ -3,3 +3,6 @@
 (defcfun add :int
   (x :int)
   (y :int))
+
+(defcfun initialize :void)
+
