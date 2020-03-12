@@ -1,4 +1,5 @@
 #include <QObject>
+#include <QVBoxLayout>
 #include <QApplication>
 #include <QPushButton>
 #include <QThread>
@@ -18,6 +19,11 @@ class SharedLibrary :public QObject {
 
 public:
     SharedLibrary();
+    void exec();
+    void windowMake();
+    void windowDelete();
+    void windowFullscreen();
+    void windowUnfullscreen();
 
 private:
     QCoreApplication * app;
