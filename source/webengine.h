@@ -10,7 +10,7 @@
 #define EXTERNC
 #endif
 
-EXTERNC void initialize();
+EXTERNC void* initialize();
 
 #undef EXTERNC
 
@@ -19,11 +19,7 @@ class SharedLibrary :public QObject {
 
 public:
     SharedLibrary();
-    void exec();
-    void windowMake();
-    void windowDelete();
-    void windowFullscreen();
-    void windowUnfullscreen();
+    int exec();
 
 private:
     QCoreApplication * app;

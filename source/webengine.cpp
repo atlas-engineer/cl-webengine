@@ -7,46 +7,55 @@ SharedLibrary::SharedLibrary() {
     app = new QApplication(argc, argv);
 }
 
-void SharedLibrary::exec() {
-    app->exec();
+int SharedLibrary::exec() {
+    return app->exec();
 }
 
-void SharedLibrary::windowMake() {
-    QWidget *window = new QWidget;
-    QPushButton *button1 = new QPushButton("One");
-    QPushButton *button2 = new QPushButton("Two");
-    
+void* initialize() {
+    return new SharedLibrary();
+}
+
+void* newQWidget() {
+    QWidget *widget = new QWidget;
+    return widget;
+}
+
+void* newQVBoxLayout() {
     QVBoxLayout *layout = new QVBoxLayout;
-    layout->addWidget(button1);
-    layout->addWidget(button2);
-    
-    window->setLayout(layout);
-    window->show();
+    return layout;
 }
 
-void SharedLibrary::windowDelete() {
-    
+void layoutAddWidget(void* layout, void* widget) {
+    QLayout *_layout = reinterpret_cast<QLayout*>(layout);
+    QWidget *_widget = reinterpret_cast<QWidget*>(widget);
+    _layout->addWidget(_widget);
 }
 
-void SharedLibrary::windowFullscreen() {
-    
+void widgetSetLayout(void *widget, void* layout) {
+    QWidget *_widget = reinterpret_cast<QWidget*>(widget);
+    QLayout *_layout = reinterpret_cast<QLayout*>(layout);
+    _widget->setLayout(_layout);
 }
 
-void SharedLibrary::windowUnfullscreen() {
-    
-}
-
-void initialize() {
-    new SharedLibrary();
-    return;
+void widgetShow(void *widget) {
+    QWidget *_widget = reinterpret_cast<QWidget*>(widget);
+    _widget->show();
 }
 
 int main (int argc, char** argv) {
     UNUSED(argc);
     UNUSED(argv);
-    SharedLibrary *instance = new SharedLibrary();
-    instance->windowMake();
-    instance->windowMake();
-    instance->exec();
-    return 0;
+    SharedLibrary *instance = reinterpret_cast<SharedLibrary*>(initialize());
+
+    QWidget *window = reinterpret_cast<QWidget*>(newQWidget());
+    QPushButton *button1 = new QPushButton("One");
+    QPushButton *button2 = new QPushButton("Two");
+    QVBoxLayout *layout = reinterpret_cast<QVBoxLayout*>(newQVBoxLayout());
+    layoutAddWidget(layout, button1);
+    layoutAddWidget(layout, button2);
+    widgetSetLayout(window, layout);
+    widgetShow(window);
+    
+    window->setWindowTitle("New Title");
+    return instance->exec();
 }
