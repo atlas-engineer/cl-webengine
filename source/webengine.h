@@ -2,6 +2,7 @@
 #include <QVBoxLayout>
 #include <QApplication>
 #include <QPushButton>
+#include <QWebEngineView>
 #include <QThread>
 
 #ifdef __cplusplus

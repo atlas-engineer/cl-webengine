@@ -25,6 +25,11 @@ void* newQVBoxLayout() {
     return layout;
 }
 
+void* newQWebEngineView() {
+    QWebEngineView *webEngineView = new QWebEngineView;
+    return webEngineView;
+}
+
 void layoutAddWidget(void* layout, void* widget) {
     QLayout *_layout = reinterpret_cast<QLayout*>(layout);
     QWidget *_widget = reinterpret_cast<QWidget*>(widget);
