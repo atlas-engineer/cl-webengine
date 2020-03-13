@@ -42,6 +42,32 @@ void widgetShow(void *widget) {
     _widget->show();
 }
 
+void widgetResize(void *widget, int width, int height) {
+    QWidget *_widget = reinterpret_cast<QWidget*>(widget);
+    _widget->resize(width, height);
+}
+
+void windowSetWindowTitle(void* window, char* title) {
+    QWidget *_window = reinterpret_cast<QWidget*>(window);
+    _window->setWindowTitle(title);
+}
+
+void layoutSetContentsMargins(void* layout, int left, int top, int right, int bottom) {
+    QLayout *_layout = reinterpret_cast<QLayout*>(layout);
+    _layout->setContentsMargins(left, top, right, bottom);
+}
+
+void layoutSetSpacing(void* layout, int spacing) {
+    QLayout *_layout = reinterpret_cast<QLayout*>(layout);
+    _layout->setSpacing(spacing);
+}
+
+void layoutInsertWidget(void* layout, int index, void* widget) {
+    QBoxLayout *_layout = reinterpret_cast<QBoxLayout*>(layout);
+    QWidget *_widget = reinterpret_cast<QWidget*>(widget);
+    _layout->insertWidget(index, _widget);
+}
+
 int main (int argc, char** argv) {
     UNUSED(argc);
     UNUSED(argv);
@@ -49,13 +75,11 @@ int main (int argc, char** argv) {
 
     QWidget *window = reinterpret_cast<QWidget*>(newQWidget());
     QPushButton *button1 = new QPushButton("One");
-    QPushButton *button2 = new QPushButton("Two");
     QVBoxLayout *layout = reinterpret_cast<QVBoxLayout*>(newQVBoxLayout());
     layoutAddWidget(layout, button1);
-    layoutAddWidget(layout, button2);
     widgetSetLayout(window, layout);
     widgetShow(window);
-    
-    window->setWindowTitle("New Title");
+    windowSetWindowTitle(window, (char*)"Title");
+    widgetResize(window, 1024, 768);
     return instance->exec();
 }
