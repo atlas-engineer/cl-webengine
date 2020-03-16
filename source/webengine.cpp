@@ -79,9 +79,9 @@ void layoutInsertWidget(void* layout, int index, void* widget) {
 }
 
 int main (int argc, char** argv) {
-    UNUSED(argc);
-    UNUSED(argv);
-    SharedLibrary *instance = reinterpret_cast<SharedLibrary*>(initialize());
+    QApplication* app = new QApplication(argc, argv);
+    
+    // SharedLibrary *instance = reinterpret_cast<SharedLibrary*>(initialize());
 
     QWidget *window = reinterpret_cast<QWidget*>(newQWidget());
     QWebEngineView *webview = reinterpret_cast<QWebEngineView*>(newQWebEngineView());
@@ -93,5 +93,7 @@ int main (int argc, char** argv) {
     widgetShow(window);
     windowSetWindowTitle(window, (char*)"Title");
     widgetResize(window, 1024, 768);
-    return instance->exec();
+
+    // return instance->exec();
+    return app->exec();
 }
