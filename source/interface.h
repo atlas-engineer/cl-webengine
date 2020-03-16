@@ -15,13 +15,3 @@ EXTERNC void* initialize();
 
 #undef EXTERNC
 
-class SharedLibrary :public QObject {
-    Q_OBJECT
-
-public:
-    SharedLibrary();
-    int exec();
-
-private:
-    QCoreApplication * app;
-};

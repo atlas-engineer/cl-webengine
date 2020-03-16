@@ -1,17 +1,12 @@
 #include "interface.h"
 
-SharedLibrary::SharedLibrary() {
-    int argc = 1;
-    char* argv[] = { (char*)"sharedlibrary.lib", NULL };
-    app = new QApplication(argc, argv);
+void* newQApplication(int argc, char** argv) {
+    return new QApplication(argc, argv);
 }
 
-int SharedLibrary::exec() {
-    return app->exec();
-}
-
-void* initialize() {
-    return new SharedLibrary();
+int applicationExec(void* application) {
+    QApplication *_application = reinterpret_cast<QApplication*>(application);
+    return _application->exec();
 }
 
 void* newQWidget() {
@@ -93,8 +88,7 @@ void layoutInsertWidget(void* layout, int index, void* widget) {
 }
 
 int main (int argc, char** argv) {
-    QApplication* app = new QApplication(argc, argv);
-
+    QApplication* app = reinterpret_cast<QApplication*>(newQApplication(argc, argv));
     QWidget *window = reinterpret_cast<QWidget*>(newQWidget());
     QWebEngineView *webview1 = reinterpret_cast<QWebEngineView*>(newQWebEngineView());
     QWebEngineView *webview2 = reinterpret_cast<QWebEngineView*>(newQWebEngineView());
@@ -110,6 +104,5 @@ int main (int argc, char** argv) {
     windowSetWindowTitle(window, (char*)"Title");
     widgetResize(window, 1024, 768);
     webEnginePageRunJavaScript(webpage, (char*)"document.body.style.backgroundColor = \"red\";");
-
-    return app->exec();
+    return applicationExec(app);
 }
