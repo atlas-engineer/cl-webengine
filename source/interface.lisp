@@ -1,6 +1,8 @@
 (in-package :cl-webengine)
 
-(defcfun newQApplication :pointer)
+(defcfun ("newQApplication" new-q-application) :pointer
+  (argc :int)
+  (argv :pointer))
 
 (defcfun applicationExec :int
   (application :pointer))
