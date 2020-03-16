@@ -11,7 +11,6 @@
 #define EXTERNC
 #endif
 
-EXTERNC void* initialize();
 EXTERNC void* newQApplication(int argc, char** argv);
 EXTERNC int applicationExec(void* application);
 EXTERNC void* newQWidget();
