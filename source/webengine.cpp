@@ -26,8 +26,13 @@ void* newQVBoxLayout() {
 }
 
 void* newQWebEngineView() {
-    QWebEngineView *webEngineView = new QWebEngineView;
+    QWebEngineView *webEngineView = new QWebEngineView();
     return webEngineView;
+}
+
+void webEngineViewLoad(void* webEngineView, char* url) {
+    QWebEngineView *_webEngineView = reinterpret_cast<QWebEngineView*>(webEngineView);
+    _webEngineView->setUrl(QUrl(url));
 }
 
 void layoutAddWidget(void* layout, void* widget) {
@@ -36,18 +41,18 @@ void layoutAddWidget(void* layout, void* widget) {
     _layout->addWidget(_widget);
 }
 
-void widgetSetLayout(void *widget, void* layout) {
+void widgetSetLayout(void* widget, void* layout) {
     QWidget *_widget = reinterpret_cast<QWidget*>(widget);
     QLayout *_layout = reinterpret_cast<QLayout*>(layout);
     _widget->setLayout(_layout);
 }
 
-void widgetShow(void *widget) {
+void widgetShow(void* widget) {
     QWidget *_widget = reinterpret_cast<QWidget*>(widget);
     _widget->show();
 }
 
-void widgetResize(void *widget, int width, int height) {
+void widgetResize(void* widget, int width, int height) {
     QWidget *_widget = reinterpret_cast<QWidget*>(widget);
     _widget->resize(width, height);
 }
@@ -79,9 +84,11 @@ int main (int argc, char** argv) {
     SharedLibrary *instance = reinterpret_cast<SharedLibrary*>(initialize());
 
     QWidget *window = reinterpret_cast<QWidget*>(newQWidget());
-    QPushButton *button1 = new QPushButton("One");
+    QWebEngineView *webview = reinterpret_cast<QWebEngineView*>(newQWebEngineView());
     QVBoxLayout *layout = reinterpret_cast<QVBoxLayout*>(newQVBoxLayout());
-    layoutAddWidget(layout, button1);
+    widgetShow(webview);
+    webEngineViewLoad(webview, (char*)"https://www.duckduckgo.com");
+    layoutAddWidget(layout, webview);
     widgetSetLayout(window, layout);
     widgetShow(window);
     windowSetWindowTitle(window, (char*)"Title");
