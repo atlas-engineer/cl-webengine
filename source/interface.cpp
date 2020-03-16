@@ -1,5 +1,4 @@
-#include "webengine.h"
-#define UNUSED(x) (void)(x)
+#include "interface.h"
 
 SharedLibrary::SharedLibrary() {
     int argc = 1;
@@ -57,6 +56,11 @@ void widgetResize(void* widget, int width, int height) {
     _widget->resize(width, height);
 }
 
+void widgetSetFixedHeight(void* widget, int height) {
+    QWidget *_widget = reinterpret_cast<QWidget*>(widget);
+    _widget->setFixedHeight(height);
+}
+
 void windowSetWindowTitle(void* window, char* title) {
     QWidget *_window = reinterpret_cast<QWidget*>(window);
     _window->setWindowTitle(title);
@@ -80,8 +84,6 @@ void layoutInsertWidget(void* layout, int index, void* widget) {
 
 int main (int argc, char** argv) {
     QApplication* app = new QApplication(argc, argv);
-    
-    // SharedLibrary *instance = reinterpret_cast<SharedLibrary*>(initialize());
 
     QWidget *window = reinterpret_cast<QWidget*>(newQWidget());
     QWebEngineView *webview = reinterpret_cast<QWebEngineView*>(newQWebEngineView());
@@ -94,6 +96,5 @@ int main (int argc, char** argv) {
     windowSetWindowTitle(window, (char*)"Title");
     widgetResize(window, 1024, 768);
 
-    // return instance->exec();
     return app->exec();
 }

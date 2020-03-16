@@ -4,5 +4,5 @@ INCLUDEPATH += .
 QT += core gui widgets webenginewidgets
 
 # Input
-HEADERS += webengine.h
-SOURCES += webengine.cpp
+HEADERS += interface.h
+SOURCES += interface.cpp
