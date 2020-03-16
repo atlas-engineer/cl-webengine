@@ -1,6 +1,9 @@
 (in-package :cl-webengine)
 
-(defcfun initialize :pointer)
+(defcfun newQApplication :pointer)
+
+(defcfun applicationExec :int
+  (application :pointer))
 
 (defcfun newQWidget :pointer)
 
