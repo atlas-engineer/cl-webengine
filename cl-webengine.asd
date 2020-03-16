@@ -13,5 +13,6 @@
   :components ((:module "source"
                 :components
                         ((:file "package")
-                         (:file "interface"))))
+                         (:file "interface")
+                         (:file "run"))))
   :depends-on (:cffi))
