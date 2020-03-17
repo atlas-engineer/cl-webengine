@@ -2,4 +2,4 @@
 
 (defun run ()
   (print "Hello dear world")
-  (newQApplication))
+  (new-q-application))
