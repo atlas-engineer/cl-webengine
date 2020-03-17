@@ -6,3 +6,9 @@ Bindings to Qt and WebEngine.
 qmake
 make
 #+END_SRC
+
+Running in SBCL on macOS
+#+NAME: configuration
+#+BEGIN_SRC lisp
+(sb-int:with-float-traps-masked (:invalid :inexact :overflow) (cl-webengine::run))
+#+END_SRC
