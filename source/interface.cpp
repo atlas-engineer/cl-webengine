@@ -88,7 +88,7 @@ void layoutInsertWidget(void* layout, int index, void* widget) {
 }
 
 int main (int argc, char** argv) {
-    QApplication* app = reinterpret_cast<QApplication*>(newQApplication(argc, argv));
+    QApplication* app = new QApplication(argc, argv);
     QWidget *window = reinterpret_cast<QWidget*>(newQWidget());
     QWebEngineView *webview1 = reinterpret_cast<QWebEngineView*>(newQWebEngineView());
     QWebEngineView *webview2 = reinterpret_cast<QWebEngineView*>(newQWebEngineView());
@@ -104,5 +104,5 @@ int main (int argc, char** argv) {
     windowSetWindowTitle(window, (char*)"Title");
     widgetResize(window, 1024, 768);
     webEnginePageRunJavaScript(webpage, (char*)"document.body.style.backgroundColor = \"red\";");
-    return applicationExec(app);
+    return app->exec();
 }
