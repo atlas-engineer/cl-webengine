@@ -9,6 +9,9 @@
 
 (defcfun ("newQWidget" new-q-widget) :pointer)
 
+(defcfun ("newQPushButton" new-q-push-button) :pointer
+  (label :string))
+
 (defcfun ("newQVBoxLayout" new-qv-box-layout) :pointer)
 
 (defcfun ("newQWebEngineView" new-q-web-engine-view) :pointer)
