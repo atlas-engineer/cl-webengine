@@ -19,6 +19,11 @@ void* newQVBoxLayout() {
     return layout;
 }
 
+void* newQPushButton(char* label){
+    QPushButton *pushButton = new QPushButton(label);
+    return pushButton;
+}
+
 void* newQWebEngineView() {
     QWebEngineView *webEngineView = new QWebEngineView();
     return webEngineView;
@@ -93,12 +98,14 @@ int main (int argc, char** argv) {
     QWebEngineView *webview1 = reinterpret_cast<QWebEngineView*>(newQWebEngineView());
     QWebEngineView *webview2 = reinterpret_cast<QWebEngineView*>(newQWebEngineView());
     QVBoxLayout *layout = reinterpret_cast<QVBoxLayout*>(newQVBoxLayout());
+    QPushButton *button = reinterpret_cast<QPushButton*>(newQPushButton((char*)"Pomelo"));
     widgetShow(webview1);
     webEngineViewLoad(webview1, (char*)"https://next.atlas.engineer/contact");
     webEngineViewLoad(webview2, (char*)"https://next.atlas.engineer/legal");
     QWebEnginePage *webpage = reinterpret_cast<QWebEnginePage*>(webEngineViewPage(webview1));
     layoutAddWidget(layout, webview1);
     layoutAddWidget(layout, webview2);
+    layoutAddWidget(layout, button);
     widgetSetLayout(window, layout);
     widgetShow(window);
     windowSetWindowTitle(window, (char*)"Title");
