@@ -4,62 +4,62 @@
   (argc :int)
   (argv :pointer))
 
-(defcfun applicationExec :int
+(defcfun ("applicationExec" application-exec) :int
   (application :pointer))
 
-(defcfun newQWidget :pointer)
+(defcfun ("newQWidget" new-q-widget) :pointer)
 
-(defcfun newQVBoxLayout :pointer)
+(defcfun ("newQVBoxLayout" new-qv-box-layout) :pointer)
 
-(defcfun newQWebEngineView :pointer)
+(defcfun ("newQWebEngineView" new-q-web-engine-view) :pointer)
 
-(defcfun webEngineViewLoad :void
+(defcfun ("webEngineViewLoad" web-engine-view-load) :void
   (webEngineView :pointer)
   (url :string))
 
-(defcfun webEngineViewPage :pointer
+(defcfun ("webEngineViewPage" web-engine-view-page) :pointer
   (webEngineView :pointer))
 
-(defcfun webEnginePageRunJavaScript :void
+(defcfun ("webEnginePageRunJavaScript" web-engine-page-run-javascript) :void
   (webEnginePage :pointer)
   (javascript :string))
 
-(defcfun layoutAddWidget :void
+(defcfun ("layoutAddWidget" layout-add-widget) :void
   (layout :pointer)
   (widget :pointer))
 
-(defcfun widgetSetLayout :void
+(defcfun ("widgetSetLayout" widget-set-layout) :void
   (widget :pointer)
   (layout :pointer))
 
-(defcfun widgetShow :void
+(defcfun ("widgetShow" widget-show) :void
   (widget :pointer))
 
-(defcfun widgetResize :void
+(defcfun ("widgetResize" widget-resize) :void
   (widget :pointer)
   (width :int)
   (height :int))
 
-(defcfun widgetSetFixedHeight :void
+(defcfun ("widgetSetFixedHeight" widget-set-fixed-height) :void
   (widget :pointer)
   (height :int))
 
-(defcfun windowSetWindowTitle :void
+(defcfun ("windowSetWindowTitle" window-set-window-title) :void
   (window :pointer)
   (title :string))
 
-(defcfun layoutSetContentsMargins :void
+(defcfun ("layoutSetContentsMargins" layout-set-contents-margins) :void
   (layout :pointer)
   (left :int)
   (top :int)
   (right :int)
   (bottom :int))
 
-(defcfun layoutSetSpacing :void
+(defcfun ("layoutSetSpacing" layout-set-spacing) :void
   (layout :pointer)
   (spacing :int))
 
-(defcfun layoutInsertWidget :void
+(defcfun ("layoutInsertWidget" layout-insert-widget) :void
   (layout :pointer)
   (index :int)
   (widget :pointer))
