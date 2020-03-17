@@ -93,12 +93,12 @@ void layoutInsertWidget(void* layout, int index, void* widget) {
 }
 
 int main (int argc, char** argv) {
-    QApplication* app = new QApplication(argc, argv);
+    QApplication* app = reinterpret_cast<QApplication*>(newQApplication(argc, argv));
     QWidget *window = reinterpret_cast<QWidget*>(newQWidget());
     QVBoxLayout *layout = reinterpret_cast<QVBoxLayout*>(newQVBoxLayout());
     QPushButton *button = reinterpret_cast<QPushButton*>(newQPushButton((char*)"Pomelo"));
     layoutAddWidget(layout, button);
     widgetSetLayout(window, layout);
     widgetShow(window);
-    return app->exec();
+    return applicationExec(app);
 }
