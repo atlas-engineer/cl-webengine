@@ -4,11 +4,19 @@ Bindings to Qt and WebEngine.
 #+NAME: compilation
 #+BEGIN_SRC shell
 qmake
+make clean
 make
 #+END_SRC
 
-Running in SBCL on macOS
+Running in SBCL on macOS:
 #+NAME: configuration
 #+BEGIN_SRC lisp
 (sb-int:with-float-traps-masked (:invalid :inexact :overflow) (cl-webengine::run))
+#+END_SRC
+
+Running from Slime in SBCL on macOS:
+#+NAME: configuration
+#+BEGIN_SRC lisp
+(trivial-main-thread:call-in-main-thread 
+          (lambda () (sb-int:with-float-traps-masked (:invalid :inexact :overflow) (cl-webengine::run))))
 #+END_SRC
