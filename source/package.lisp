@@ -1,4 +1,5 @@
 (defpackage :cl-webengine
+  (:nicknames :webengine :qt)
   (:use :common-lisp :cffi))
 
 (in-package :cl-webengine)
