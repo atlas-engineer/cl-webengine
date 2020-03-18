@@ -15,6 +15,7 @@ EXTERNC void* newQApplication(int argc, char** argv);
 EXTERNC int applicationExec(void* application);
 EXTERNC void* newQPushButton(char* label);
 EXTERNC void* newQWidget();
+EXTERNC void* newQHBoxLayout();
 EXTERNC void* newQVBoxLayout();
 EXTERNC void* newQWebEngineView();
 EXTERNC void webEngineViewLoad(void* webEngineView, char* url);

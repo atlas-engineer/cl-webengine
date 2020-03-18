@@ -19,6 +19,11 @@ void* newQVBoxLayout() {
     return layout;
 }
 
+void* newQHBoxLayout() {
+    QHBoxLayout *layout = new QHBoxLayout;
+    return layout;
+}
+
 void* newQPushButton(char* label){
     QPushButton *pushButton = new QPushButton(label);
     return pushButton;

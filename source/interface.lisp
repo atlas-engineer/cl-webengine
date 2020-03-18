@@ -14,6 +14,8 @@
 
 (defcfun ("newQVBoxLayout" new-qv-box-layout) :pointer)
 
+(defcfun ("newQHBoxLayout" new-qv-box-layout) :pointer)
+
 (defcfun ("newQWebEngineView" new-q-web-engine-view) :pointer)
 
 (defcfun ("webEngineViewLoad" web-engine-view-load) :void
