@@ -9,6 +9,12 @@ int applicationExec(void* application) {
     return _application->exec();
 }
 
+void applicationQuit(void* application) {
+    QApplication *_application = reinterpret_cast<QApplication*>(application);
+    _application->quit();
+    return;
+}
+
 void* newQWidget() {
     QWidget *widget = new QWidget;
     return widget;

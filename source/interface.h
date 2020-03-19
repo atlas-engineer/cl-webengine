@@ -14,6 +14,7 @@
 EXTERNC int windowIsActiveWindow(void* window);
 EXTERNC void* newQApplication(int argc, char** argv);
 EXTERNC int applicationExec(void* application);
+EXTERNC void applicationQuit(void* application);
 EXTERNC void* newQPushButton(char* label);
 EXTERNC void* newQWidget();
 EXTERNC void* newQHBoxLayout();

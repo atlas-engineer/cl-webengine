@@ -9,6 +9,10 @@
   (application :pointer))
 (export 'application-exec)
 
+(defcfun ("applicationQuit" application-quit) :void
+  (application :pointer))
+(export 'application-quit)
+
 (defcfun ("newQWidget" new-q-widget) :pointer)
 (export 'new-q-widget)
 
