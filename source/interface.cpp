@@ -81,6 +81,11 @@ void windowSetWindowTitle(void* window, char* title) {
     _window->setWindowTitle(title);
 }
 
+int windowIsActiveWindow(void* window) {
+    QWidget *_window = reinterpret_cast<QWidget*>(window);
+    return _window->isActiveWindow();
+}
+
 void layoutSetContentsMargins(void* layout, int left, int top, int right, int bottom) {
     QLayout *_layout = reinterpret_cast<QLayout*>(layout);
     _layout->setContentsMargins(left, top, right, bottom);

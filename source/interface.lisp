@@ -69,6 +69,13 @@
   (title :string))
 (export 'window-set-window-title)
 
+(defcfun ("windowIsActiveWindow" %window-is-active-window) :int
+  (window :pointer))
+
+(defun window-is-active-window (window)
+  (if (> (%window-is-active-window window) 0) t nil))
+(export 'window-is-active-window)
+
 (defcfun ("layoutSetContentsMargins" layout-set-contents-margins) :void
   (layout :pointer)
   (left :int)
