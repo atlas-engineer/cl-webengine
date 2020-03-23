@@ -98,6 +98,16 @@ int windowIsActiveWindow(void* window) {
     return _window->isActiveWindow();
 }
 
+void windowShowFullScreen(void* window) {
+    QWidget *_window = reinterpret_cast<QWidget*>(window);
+    _window->showFullScreen();
+}
+
+void windowShowNormal(void* window) {
+    QWidget *_window = reinterpret_cast<QWidget*>(window);
+    _window->showNormal();
+}
+
 void layoutSetContentsMargins(void* layout, int left, int top, int right, int bottom) {
     QLayout *_layout = reinterpret_cast<QLayout*>(layout);
     _layout->setContentsMargins(left, top, right, bottom);

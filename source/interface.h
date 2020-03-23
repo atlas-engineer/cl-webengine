@@ -30,6 +30,8 @@ EXTERNC void widgetShow(void* widget);
 EXTERNC void widgetResize(void* widget, int width, int height);
 EXTERNC void widgetSetFixedHeight(void* widget, int height);
 EXTERNC void windowSetWindowTitle(void* window, char* title);
+EXTERNC void windowShowFullScreen(void* window);
+EXTERNC void windowShowNormal(void* window);
 EXTERNC void layoutSetContentsMargins(void* layout, int left, int top, int right, int bottom);
 EXTERNC void layoutSetSpacing(void* layout, int spacing);
 EXTERNC void layoutInsertWidget(void* layout, int index, void* widget);

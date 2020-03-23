@@ -78,6 +78,14 @@
   (title :string))
 (export 'window-set-window-title)
 
+(defcfun ("windowShowFullScreen" window-show-full-screen) :void
+  (window :pointer))
+(export 'window-show-full-screen)
+
+(defcfun ("windowShowNormal" window-show-normal) :void
+  (window :pointer))
+(export 'window-show-normal)
+
 (defcfun ("windowIsActiveWindow" %window-is-active-window) :int
   (window :pointer))
 
