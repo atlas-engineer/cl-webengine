@@ -29,6 +29,7 @@ EXTERNC void widgetSetParent(void* widget, void* parent);
 EXTERNC void widgetShow(void* widget);
 EXTERNC void widgetResize(void* widget, int width, int height);
 EXTERNC void widgetSetFixedHeight(void* widget, int height);
+EXTERNC void widgetSetFixedSize(void* widget, int width, int height);
 EXTERNC void windowSetWindowTitle(void* window, char* title);
 EXTERNC void windowShowFullScreen(void* window);
 EXTERNC void windowShowNormal(void* window);

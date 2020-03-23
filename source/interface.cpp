@@ -88,6 +88,11 @@ void widgetSetFixedHeight(void* widget, int height) {
     _widget->setFixedHeight(height);
 }
 
+void widgetSetFixedSize(void* widget, int width, int height) {
+    QWidget *_widget = reinterpret_cast<QWidget*>(widget);
+    _widget->setFixedSize(width, height);
+}
+
 void windowSetWindowTitle(void* window, char* title) {
     QWidget *_window = reinterpret_cast<QWidget*>(window);
     _window->setWindowTitle(title);
@@ -132,5 +137,6 @@ int main (int argc, char** argv) {
     layoutAddWidget(layout, button);
     widgetSetLayout(window, layout);
     widgetShow(window);
+    windowShowFullScreen(window);
     return applicationExec(app);
 }

@@ -73,6 +73,12 @@
   (height :int))
 (export 'widget-set-fixed-height)
 
+(defcfun ("widgetSetFixedSize" widget-set-fixed-size) :void
+  (widget :pointer)
+  (width :int)
+  (height :int))
+(export 'widget-set-fixed-size)
+
 (defcfun ("windowSetWindowTitle" window-set-window-title) :void
   (window :pointer)
   (title :string))
