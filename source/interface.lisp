@@ -53,6 +53,11 @@
   (layout :pointer))
 (export 'widget-set-layout)
 
+(defcfun ("widgetSetParent" widget-set-parent) :void
+  (widget :pointer)
+  (parent :pointer))
+(export 'widget-set-parent)
+
 (defcfun ("widgetShow" widget-show) :void
   (widget :pointer))
 (export 'widget-show)

@@ -25,6 +25,7 @@ EXTERNC void* webEngineViewPage(void* webEngineView);
 EXTERNC void webEnginePageRunJavaScript(void* webEnginePage, char* javascript);
 EXTERNC void layoutAddWidget(void* layout, void* widget);
 EXTERNC void widgetSetLayout(void* widget, void* layout);
+EXTERNC void widgetSetParent(void* widget, void* parent);
 EXTERNC void widgetShow(void* widget);
 EXTERNC void widgetResize(void* widget, int width, int height);
 EXTERNC void widgetSetFixedHeight(void* widget, int height);

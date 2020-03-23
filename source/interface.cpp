@@ -67,6 +67,12 @@ void widgetSetLayout(void* widget, void* layout) {
     _widget->setLayout(_layout);
 }
 
+void widgetSetParent(void* widget, void* parent) {
+    QWidget *_widget = reinterpret_cast<QWidget*>(widget);
+    QWidget *_parent = reinterpret_cast<QWidget*>(parent);
+    _widget->setParent(_parent);
+}
+
 void widgetShow(void* widget) {
     QWidget *_widget = reinterpret_cast<QWidget*>(widget);
     _widget->show();
