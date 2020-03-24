@@ -39,5 +39,12 @@ EXTERNC void layoutInsertWidget(void* layout, int index, void* widget);
 
 #undef EXTERNC
 
+class LoadStartedListener :public QObject {
+    Q_OBJECT
 
+public:
+    LoadStartedListener();
 
+public slots:
+    void loadStarted();
+};

@@ -1,4 +1,13 @@
 #include "interface.h"
+#include <unistd.h>
+
+LoadStartedListener::LoadStartedListener() {
+}
+
+void LoadStartedListener::loadStarted() {
+    printf("Load started marker");
+    return;
+}
 
 void* newQApplication(int argc, char** argv) {
     return new QApplication(argc, argv);
@@ -130,13 +139,16 @@ void layoutInsertWidget(void* layout, int index, void* widget) {
 }
 
 int main (int argc, char** argv) {
-    QApplication* app = reinterpret_cast<QApplication*>(newQApplication(argc, argv));
+    QApplication* app = new QApplication(argc, argv);
     QWidget *window = reinterpret_cast<QWidget*>(newQWidget());
     QVBoxLayout *layout = reinterpret_cast<QVBoxLayout*>(newQVBoxLayout());
-    QPushButton *button = reinterpret_cast<QPushButton*>(newQPushButton((char*)"Pomelo"));
-    layoutAddWidget(layout, button);
+    QWebEngineView *web = reinterpret_cast<QWebEngineView*>(newQWebEngineView());
+    LoadStartedListener *listener = new LoadStartedListener();
+    QObject::connect(web, &QWebEngineView::loadStarted, listener, &LoadStartedListener::loadStarted);
+    webEngineViewLoad(web, (char*)"https://www.duckduckgo.com");
+    layoutAddWidget(layout, web);
     widgetSetLayout(window, layout);
     widgetShow(window);
     windowShowFullScreen(window);
-    return applicationExec(app);
+    return app->exec();
 }
