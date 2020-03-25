@@ -1,5 +1,13 @@
 (in-package :cl-webengine)
 
+(defcfun ("newLoadStartedListener" new-load-started-listener) :pointer)
+(export 'new-load-started-listener)
+
+(defcfun ("loadStartedListenerConnect" load-started-listener-connect) :void
+  (load-started-listener :pointer)
+  (web-engine-view :pointer))
+(export 'load-started-listener-connect)
+
 (defcfun ("newQApplication" new-q-application) :pointer
   (argc :int)
   (argv :pointer))
