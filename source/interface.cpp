@@ -9,6 +9,18 @@ void LoadStartedListener::loadStarted() {
     return;
 }
 
+void* newLoadStartedListener() {
+    LoadStartedListener *listener = new LoadStartedListener();
+    return listener;
+}
+
+void loadStartedListenerConnect(void* loadStartedListener, void* webEngineView) {
+    LoadStartedListener *_loadStartedListener = reinterpret_cast<LoadStartedListener*>(loadStartedListener);
+    QWebEngineView *_webEngineView = reinterpret_cast<QWebEngineView*>(webEngineView);
+    QObject::connect(_webEngineView, &QWebEngineView::loadStarted,
+                     _loadStartedListener, &LoadStartedListener::loadStarted);
+}
+
 void* newQApplication(int argc, char** argv) {
     return new QApplication(argc, argv);
 }

@@ -13,6 +13,8 @@
 
 EXTERNC int windowIsActiveWindow(void* window);
 EXTERNC void* newQApplication(int argc, char** argv);
+EXTERNC void* newLoadStartedListener();
+EXTERNC void loadStartedListenerConnect(void* loadStartedListener, void* webEngineView);
 EXTERNC int applicationExec(void* application);
 EXTERNC void applicationQuit(void* application);
 EXTERNC void* newQPushButton(char* label);
