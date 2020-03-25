@@ -1,16 +1,17 @@
 #include "interface.h"
-#include <unistd.h>
 
-LoadStartedListener::LoadStartedListener() {
-}
+LoadStartedListener::LoadStartedListener() { }
 
 void LoadStartedListener::loadStarted() {
-    printf("Load started marker");
+    callback(id);
     return;
 }
 
-void* newLoadStartedListener() {
+void* newLoadStartedListener(int id, fp callback) {
     LoadStartedListener *listener = new LoadStartedListener();
+    listener->id = id;
+    listener->callback = callback;
+
     return listener;
 }
 

@@ -1,12 +1,35 @@
 (in-package :cl-webengine)
 
-(defcfun ("newLoadStartedListener" new-load-started-listener) :pointer)
+(defvar callback-counter 0)
+(defvar callbacks ())
+(defstruct callback
+  (id)
+  (web-view)
+  (function))
+
+(defcfun ("newLoadStartedListener" new-load-started-listener) :pointer
+  (id :int)
+  (callback :pointer))
 (export 'new-load-started-listener)
 
-(defcfun ("loadStartedListenerConnect" load-started-listener-connect) :void
+(defcfun ("loadStartedListenerConnect" %load-started-listener-connect) :void
   (load-started-listener :pointer)
   (web-engine-view :pointer))
+
+(defun load-started-listener-connect (web-engine-view callback)
+  (incf callback-counter)
+  (push (make-callback :id callback-counter :function callback) callbacks)
+  (%load-started-listener-connect
+   (new-load-started-listener callback-counter (cffi:callback load-started))
+   web-engine-view))
 (export 'load-started-listener-connect)
+
+(cffi:defcallback load-started
+    :void ((id :int))
+  (let* ((callback (find id callbacks :key (function callback-id))))
+    (setf callbacks (delete callback callbacks))
+    (when (callback-function callback)
+      (funcall (callback-function callback)))))
 
 (defcfun ("newQApplication" new-q-application) :pointer
   (argc :int)

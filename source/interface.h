@@ -5,6 +5,8 @@
 #include <QWebEngineView>
 #include <QThread>
 
+typedef void (*fp)(int arg);
+
 #ifdef __cplusplus
 #define EXTERNC extern "C"
 #else
@@ -13,7 +15,7 @@
 
 EXTERNC int windowIsActiveWindow(void* window);
 EXTERNC void* newQApplication(int argc, char** argv);
-EXTERNC void* newLoadStartedListener();
+EXTERNC void* newLoadStartedListener(int id, fp callback);
 EXTERNC void loadStartedListenerConnect(void* loadStartedListener, void* webEngineView);
 EXTERNC int applicationExec(void* application);
 EXTERNC void applicationQuit(void* application);
@@ -46,6 +48,8 @@ class LoadStartedListener :public QObject {
 
 public:
     LoadStartedListener();
+    int id;
+    fp callback;
 
 public slots:
     void loadStarted();
