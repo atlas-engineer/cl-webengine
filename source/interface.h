@@ -45,14 +45,15 @@ EXTERNC void layoutInsertWidget(void* layout, int index, void* widget);
 
 #undef EXTERNC
 
-class LoadStartedListener :public QObject {
+class Listener :public QObject {
     Q_OBJECT
-
 public:
-    LoadStartedListener();
     int id;
     fp callback;
+};
 
+class LoadStartedListener :public Listener {
+    Q_OBJECT
 public slots:
     void loadStarted();
 };

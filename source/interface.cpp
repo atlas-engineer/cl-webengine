@@ -1,7 +1,5 @@
 #include "interface.h"
 
-LoadStartedListener::LoadStartedListener() { }
-
 void LoadStartedListener::loadStarted() {
     callback(id);
     return;
@@ -11,7 +9,6 @@ void* newLoadStartedListener(int id, fp callback) {
     LoadStartedListener *listener = new LoadStartedListener();
     listener->id = id;
     listener->callback = callback;
-
     return listener;
 }
 
