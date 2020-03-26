@@ -59,6 +59,11 @@ QWidget* newQWidget() {
     return widget;
 }
 
+QWindow* newQWindow() {
+    QWindow *window = new QWindow;
+    return window;
+}
+
 QVBoxLayout* newQVBoxLayout() {
     QVBoxLayout *layout = new QVBoxLayout;
     return layout;

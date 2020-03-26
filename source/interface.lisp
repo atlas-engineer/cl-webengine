@@ -66,6 +66,9 @@
   (application :pointer))
 (export 'application-quit)
 
+(defcfun ("newQWindow" new-q-window) :pointer)
+(export 'new-q-window)
+
 (defcfun ("newQWidget" new-q-widget) :pointer)
 (export 'new-q-widget)
 
@@ -153,6 +156,10 @@
 (defcfun ("windowShowNormal" window-show-normal) :void
   (window :pointer))
 (export 'window-show-normal)
+
+(defcfun ("windowPresent" window-present) :void
+  (window :pointer))
+(export 'window-present)
 
 (defcfun ("windowIsActiveWindow" %window-is-active-window) :int
   (window :pointer))

@@ -4,6 +4,7 @@
 #include <QPushButton>
 #include <QWebEngineView>
 #include <QThread>
+#include <QWindow>
 
 typedef void (*fp)(int arg);
 
@@ -23,6 +24,7 @@ EXTERNC void loadStartedListenerConnect(void* loadStartedListener, void* webEngi
 EXTERNC int applicationExec(void* application);
 EXTERNC void applicationQuit(void* application);
 EXTERNC QPushButton* newQPushButton(char* label);
+EXTERNC QWindow* newQWindow();
 EXTERNC QWidget* newQWidget();
 EXTERNC QHBoxLayout* newQHBoxLayout();
 EXTERNC QVBoxLayout* newQVBoxLayout();
@@ -42,6 +44,7 @@ EXTERNC void widgetSetFixedSize(void* widget, int width, int height);
 EXTERNC void windowSetWindowTitle(void* window, char* title);
 EXTERNC void windowShowFullScreen(void* window);
 EXTERNC void windowShowNormal(void* window);
+EXTERNC void windowPresent(void* window);
 EXTERNC void layoutSetContentsMargins(void* layout, int left, int top, int right, int bottom);
 EXTERNC void layoutSetSpacing(void* layout, int spacing);
 EXTERNC void layoutInsertWidget(void* layout, int index, void* widget);
