@@ -24,6 +24,7 @@ EXTERNC QWidget* newQWidget();
 EXTERNC QHBoxLayout* newQHBoxLayout();
 EXTERNC QVBoxLayout* newQVBoxLayout();
 EXTERNC QWebEngineView* newQWebEngineView();
+EXTERNC char* webEngineViewUrl(void* webEngineView);
 EXTERNC void webEngineViewLoad(void* webEngineView, char* url);
 EXTERNC void* webEngineViewPage(void* webEngineView);
 EXTERNC void webEnginePageSetHtml(void* webEnginePage, char* html);

@@ -64,6 +64,10 @@
   (url :string))
 (export 'web-engine-view-load)
 
+(defcfun ("webEngineViewUrl" web-engine-view-url) :string
+  (webEngineView :pointer))
+(export 'web-engine-view-url)
+
 (defcfun ("webEngineViewPage" web-engine-view-page) :pointer
   (webEngineView :pointer))
 (export 'web-engine-view-page)

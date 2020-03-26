@@ -67,6 +67,11 @@ void webEngineViewLoad(void* webEngineView, char* url) {
     _webEngineView->setUrl(QUrl(url));
 }
 
+char* webEngineViewUrl(void* webEngineView) {
+    QWebEngineView *_webEngineView = reinterpret_cast<QWebEngineView*>(webEngineView);
+    return _webEngineView->url().toString().toUtf8().data();
+}
+
 void* webEngineViewPage(void* webEngineView) {
     QWebEngineView *_webEngineView = reinterpret_cast<QWebEngineView*>(webEngineView);
     return _webEngineView->page();
