@@ -167,6 +167,12 @@ void windowShowNormal(void* window) {
     _window->showNormal();
 }
 
+void windowPresent(void* window) {
+    QWidget *_window = reinterpret_cast<QWidget*>(window);
+    _window->show();
+    _window->raise();
+}
+
 void layoutSetContentsMargins(void* layout, int left, int top, int right, int bottom) {
     QLayout *_layout = reinterpret_cast<QLayout*>(layout);
     _layout->setContentsMargins(left, top, right, bottom);
