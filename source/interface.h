@@ -26,6 +26,7 @@ EXTERNC void* newQVBoxLayout();
 EXTERNC void* newQWebEngineView();
 EXTERNC void webEngineViewLoad(void* webEngineView, char* url);
 EXTERNC void* webEngineViewPage(void* webEngineView);
+EXTERNC void webEnginePageSetHtml(void* webEnginePage, char* html);
 EXTERNC void webEnginePageRunJavaScript(void* webEnginePage, char* javascript);
 EXTERNC void layoutAddWidget(void* layout, void* widget);
 EXTERNC void widgetSetLayout(void* widget, void* layout);

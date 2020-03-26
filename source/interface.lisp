@@ -69,6 +69,11 @@
   (webEngineView :pointer))
 (export 'web-engine-view-page)
 
+(defcfun ("webEnginePageSetHtml" web-engine-page-set-html) :void
+  (webEnginePage :pointer)
+  (html :string))
+(export 'web-engine-page-set-html)
+
 (defcfun ("webEnginePageRunJavaScript" web-engine-page-run-javascript) :void
   (webEnginePage :pointer)
   (javascript :string))

@@ -72,6 +72,11 @@ void* webEngineViewPage(void* webEngineView) {
     return _webEngineView->page();
 }
 
+void webEnginePageSetHtml(void* webEnginePage, char* html) {
+    QWebEnginePage *_webEnginePage = reinterpret_cast<QWebEnginePage*>(webEnginePage);
+    _webEnginePage->setHtml(html);
+}
+
 void webEnginePageRunJavaScript(void* webEnginePage, char* javascript) {
     QWebEnginePage *_webEnginePage = reinterpret_cast<QWebEnginePage*>(webEnginePage);
     _webEnginePage->runJavaScript(javascript);
