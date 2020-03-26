@@ -7,6 +7,7 @@
 
 typedef void (*fp)(int arg);
 
+#define UNUSED(x) (void)(x)
 #ifdef __cplusplus
 #define EXTERNC extern "C"
 #else
@@ -15,6 +16,8 @@ typedef void (*fp)(int arg);
 
 EXTERNC int windowIsActiveWindow(void* window);
 EXTERNC QApplication* newQApplication(int argc, char** argv);
+EXTERNC void* newLoadFinishedListener(int id, fp callback);
+EXTERNC void loadFinishedListenerConnect(void* loadStartedListener, void* webEngineView);
 EXTERNC void* newLoadStartedListener(int id, fp callback);
 EXTERNC void loadStartedListenerConnect(void* loadStartedListener, void* webEngineView);
 EXTERNC int applicationExec(void* application);
@@ -56,4 +59,10 @@ class LoadStartedListener :public Listener {
     Q_OBJECT
 public slots:
     void loadStarted();
+};
+
+class LoadFinishedListener :public Listener {
+    Q_OBJECT
+public slots:
+    void loadFinished(bool ok);
 };

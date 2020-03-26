@@ -1,6 +1,21 @@
 #include "interface.h"
 
-void LoadStartedListener::loadStarted() {
+void* newLoadFinishedListener(int id, fp callback) {
+    LoadFinishedListener *listener = new LoadFinishedListener();
+    listener->id = id;
+    listener->callback = callback;
+    return listener;
+}
+
+void loadFinishedListenerConnect(void* loadFinishedListener, void* webEngineView) {
+    LoadFinishedListener *_loadFinishedListener = reinterpret_cast<LoadFinishedListener*>(loadFinishedListener);
+    QWebEngineView *_webEngineView = reinterpret_cast<QWebEngineView*>(webEngineView);
+    QObject::connect(_webEngineView, &QWebEngineView::loadFinished,
+                     _loadFinishedListener, &LoadFinishedListener::loadFinished);
+}
+
+void LoadFinishedListener::loadFinished(bool ok) {
+    UNUSED(ok);
     callback(id);
     return;
 }
@@ -17,6 +32,11 @@ void loadStartedListenerConnect(void* loadStartedListener, void* webEngineView) 
     QWebEngineView *_webEngineView = reinterpret_cast<QWebEngineView*>(webEngineView);
     QObject::connect(_webEngineView, &QWebEngineView::loadStarted,
                      _loadStartedListener, &LoadStartedListener::loadStarted);
+}
+
+void LoadStartedListener::loadStarted() {
+    callback(id);
+    return;
 }
 
 QApplication* newQApplication(int argc, char** argv) {

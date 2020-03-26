@@ -7,6 +7,29 @@
   (web-view)
   (function))
 
+(defcfun ("newLoadFinishedListener" new-load-finished-listener) :pointer
+  (id :int)
+  (callback :pointer))
+(export 'new-load-finished-listener)
+
+(defcfun ("loadFinishedListenerConnect" %load-finished-listener-connect) :void
+  (load-finished-listener :pointer)
+  (web-engine-view :pointer))
+
+(defun load-finished-listener-connect (web-engine-view callback)
+  (incf callback-counter)
+  (push (make-callback :id callback-counter :function callback) callbacks)
+  (%load-finished-listener-connect
+   (new-load-finished-listener callback-counter (cffi:callback load-finished))
+   web-engine-view))
+(export 'load-finished-listener-connect)
+
+(cffi:defcallback load-finished
+    :void ((id :int))
+  (let* ((callback (find id callbacks :key (function callback-id))))
+    (when (callback-function callback)
+      (funcall (callback-function callback)))))
+
 (defcfun ("newLoadStartedListener" new-load-started-listener) :pointer
   (id :int)
   (callback :pointer))
