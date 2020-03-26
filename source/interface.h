@@ -14,16 +14,16 @@ typedef void (*fp)(int arg);
 #endif
 
 EXTERNC int windowIsActiveWindow(void* window);
-EXTERNC void* newQApplication(int argc, char** argv);
+EXTERNC QApplication* newQApplication(int argc, char** argv);
 EXTERNC void* newLoadStartedListener(int id, fp callback);
 EXTERNC void loadStartedListenerConnect(void* loadStartedListener, void* webEngineView);
 EXTERNC int applicationExec(void* application);
 EXTERNC void applicationQuit(void* application);
-EXTERNC void* newQPushButton(char* label);
-EXTERNC void* newQWidget();
-EXTERNC void* newQHBoxLayout();
-EXTERNC void* newQVBoxLayout();
-EXTERNC void* newQWebEngineView();
+EXTERNC QPushButton* newQPushButton(char* label);
+EXTERNC QWidget* newQWidget();
+EXTERNC QHBoxLayout* newQHBoxLayout();
+EXTERNC QVBoxLayout* newQVBoxLayout();
+EXTERNC QWebEngineView* newQWebEngineView();
 EXTERNC void webEngineViewLoad(void* webEngineView, char* url);
 EXTERNC void* webEngineViewPage(void* webEngineView);
 EXTERNC void webEnginePageSetHtml(void* webEnginePage, char* html);

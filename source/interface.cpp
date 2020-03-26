@@ -22,7 +22,7 @@ void loadStartedListenerConnect(void* loadStartedListener, void* webEngineView) 
                      _loadStartedListener, &LoadStartedListener::loadStarted);
 }
 
-void* newQApplication(int argc, char** argv) {
+QApplication* newQApplication(int argc, char** argv) {
     return new QApplication(argc, argv);
 }
 
@@ -37,27 +37,27 @@ void applicationQuit(void* application) {
     return;
 }
 
-void* newQWidget() {
+QWidget* newQWidget() {
     QWidget *widget = new QWidget;
     return widget;
 }
 
-void* newQVBoxLayout() {
+QVBoxLayout* newQVBoxLayout() {
     QVBoxLayout *layout = new QVBoxLayout;
     return layout;
 }
 
-void* newQHBoxLayout() {
+QHBoxLayout* newQHBoxLayout() {
     QHBoxLayout *layout = new QHBoxLayout;
     return layout;
 }
 
-void* newQPushButton(char* label){
+QPushButton* newQPushButton(char* label){
     QPushButton *pushButton = new QPushButton(label);
     return pushButton;
 }
 
-void* newQWebEngineView() {
+QWebEngineView* newQWebEngineView() {
     QWebEngineView *webEngineView = new QWebEngineView();
     return webEngineView;
 }
