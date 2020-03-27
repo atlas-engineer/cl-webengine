@@ -34,7 +34,7 @@ EXTERNC char* webEngineViewUrl(void* webEngineView);
 EXTERNC void webEngineViewLoad(void* webEngineView, char* url);
 EXTERNC void* webEngineViewPage(void* webEngineView);
 EXTERNC void webEnginePageSetHtml(void* webEnginePage, char* html);
-EXTERNC void webEnginePageRunJavaScript(void* webEnginePage, char* javascript);
+EXTERNC void webEnginePageRunJavaScript(void* webEnginePage, char* javascript, int id, fpIntChar callback);
 EXTERNC void layoutAddWidget(void* layout, void* widget);
 EXTERNC void widgetSetLayout(void* widget, void* layout);
 EXTERNC void widgetSetParent(void* widget, void* parent);

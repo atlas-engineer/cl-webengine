@@ -104,9 +104,9 @@ void webEnginePageSetHtml(void* webEnginePage, char* html) {
     _webEnginePage->setHtml(html);
 }
 
-void webEnginePageRunJavaScript(void* webEnginePage, char* javascript) {
+void webEnginePageRunJavaScript(void* webEnginePage, char* javascript, int id, fpIntChar callback) {
     QWebEnginePage *_webEnginePage = reinterpret_cast<QWebEnginePage*>(webEnginePage);
-    _webEnginePage->runJavaScript(javascript);
+    _webEnginePage->runJavaScript(javascript, [id, callback](const QVariant &v) { callback(id, v.toString().toUtf8().data()); });
 }
 
 void layoutAddWidget(void* layout, void* widget) {

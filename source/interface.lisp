@@ -103,9 +103,27 @@
   (html :string))
 (export 'web-engine-page-set-html)
 
-(defcfun ("webEnginePageRunJavaScript" web-engine-page-run-javascript) :void
+(defcfun ("webEnginePageRunJavaScript" %web-engine-page-run-javascript) :void
   (webEnginePage :pointer)
-  (javascript :string))
+  (javascript :string)
+  (id :int)
+  (callback :pointer))
+
+(cffi:defcallback javascript-finished
+    :void ((id :int)
+           (result :string))
+  (let* ((callback (find id callbacks :key (function callback-id))))
+    (when (callback-function callback)
+      (funcall (callback-function callback) result))))
+
+(defun web-engine-page-run-javascript (web-engine-page javascript &optional callback)
+  (incf callback-counter)
+  (push (make-callback :id callback-counter :function callback) callbacks)
+  (%web-engine-page-run-javascript 
+   web-engine-page 
+   javascript 
+   callback-counter 
+   (cffi:callback javascript-finished)))
 (export 'web-engine-page-run-javascript)
 
 (defcfun ("layoutAddWidget" layout-add-widget) :void
