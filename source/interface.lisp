@@ -113,6 +113,7 @@
     :void ((id :int)
            (result :string))
   (let* ((callback (find id callbacks :key (function callback-id))))
+    (setf callbacks (delete callback callbacks))
     (when (callback-function callback)
       (funcall (callback-function callback) result))))
 
