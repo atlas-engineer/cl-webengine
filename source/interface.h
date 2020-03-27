@@ -6,7 +6,8 @@
 #include <QThread>
 #include <QWindow>
 
-typedef void (*fp)(int arg);
+typedef void (*fpInt)(int arg);
+typedef void (*fpIntChar)(int arg, char* str);
 
 #define UNUSED(x) (void)(x)
 #ifdef __cplusplus
@@ -17,9 +18,9 @@ typedef void (*fp)(int arg);
 
 EXTERNC int windowIsActiveWindow(void* window);
 EXTERNC QApplication* newQApplication(int argc, char** argv);
-EXTERNC void* newLoadFinishedListener(int id, fp callback);
+EXTERNC void* newLoadFinishedListener(int id, fpInt callback);
 EXTERNC void loadFinishedListenerConnect(void* loadStartedListener, void* webEngineView);
-EXTERNC void* newLoadStartedListener(int id, fp callback);
+EXTERNC void* newLoadStartedListener(int id, fpInt callback);
 EXTERNC void loadStartedListenerConnect(void* loadStartedListener, void* webEngineView);
 EXTERNC int applicationExec(void* application);
 EXTERNC void applicationQuit(void* application);
@@ -55,7 +56,7 @@ class Listener :public QObject {
     Q_OBJECT
 public:
     int id;
-    fp callback;
+    fpInt callback;
 };
 
 class LoadStartedListener :public Listener {

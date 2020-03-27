@@ -1,6 +1,6 @@
 #include "interface.h"
 
-void* newLoadFinishedListener(int id, fp callback) {
+void* newLoadFinishedListener(int id, fpInt callback) {
     LoadFinishedListener *listener = new LoadFinishedListener();
     listener->id = id;
     listener->callback = callback;
@@ -20,7 +20,7 @@ void LoadFinishedListener::loadFinished(bool ok) {
     return;
 }
 
-void* newLoadStartedListener(int id, fp callback) {
+void* newLoadStartedListener(int id, fpInt callback) {
     LoadStartedListener *listener = new LoadStartedListener();
     listener->id = id;
     listener->callback = callback;
