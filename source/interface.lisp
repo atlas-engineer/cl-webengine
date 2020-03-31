@@ -7,6 +7,16 @@
   (web-view)
   (function))
 
+(defcfun ("newKeyPressFilter" new-key-press-filter) :pointer
+  (id :int)
+  (callback :pointer))
+(export 'new-key-press-filter)
+
+(defcfun ("widgetInstallKeyPressFilter" widget-install-key-press-filter) :pointer
+  (widget :pointer)
+  (key-press-filter :pointer))
+(export 'widget-install-key-press-filter)
+
 (defcfun ("newLoadFinishedListener" new-load-finished-listener) :pointer
   (id :int)
   (callback :pointer))
