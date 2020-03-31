@@ -9,6 +9,7 @@
 
 typedef void (*fpInt)(int arg);
 typedef void (*fpIntChar)(int arg, char* str);
+typedef void (*fpKeyPress)(int keyCode, char* keyString, char** modifiers);
 
 #define UNUSED(x) (void)(x)
 #ifdef __cplusplus
@@ -79,7 +80,7 @@ class KeyPressFilter : public QObject
     Q_OBJECT
 public:
     int id;
-    fpInt callback;
+    fpKeyPress callback;
 protected:
     bool eventFilter(QObject *obj, QEvent *event);
 };

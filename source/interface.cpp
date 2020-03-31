@@ -1,6 +1,6 @@
 #include "interface.h"
 
-void* newKeyPressFilter(int id, fpInt callback) {
+void* newKeyPressFilter(int id, fpKeyPress callback) {
     KeyPressFilter *keyPressFilter = new KeyPressFilter();
     keyPressFilter->id = id;
     keyPressFilter->callback = callback;
@@ -19,7 +19,6 @@ bool KeyPressFilter::eventFilter(QObject *obj, QEvent *event) {
         qDebug("Key press %d", keyEvent->key());
         return true;
     } else {
-        // standard event processing
         return QObject::eventFilter(obj, event);
     }
 }
