@@ -16,7 +16,20 @@ void widgetInstallKeyPressFilter(void* widget, void* keyPressFilter) {
 bool KeyPressFilter::eventFilter(QObject *obj, QEvent *event) {
     if (event->type() == QEvent::KeyPress) {
         QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
-        qDebug("Key press %d", keyEvent->key());
+        int keyCode = keyEvent->key();
+        QString text;
+        if (keyEvent->text().isEmpty()) {
+            text = QKeySequence(keyEvent->key()).toString();
+        } else {
+            text = keyEvent->text();
+        }
+        QByteArray keyStringArray = text.toUtf8();
+        char* keyString = keyStringArray.data();
+        int modifiers = keyEvent->nativeModifiers();
+        if (modifiers != 0) {
+            qDebug("Key press %d, modifiers %d, string %s",
+                   keyCode, modifiers, keyString);
+        }
         return true;
     } else {
         return QObject::eventFilter(obj, event);

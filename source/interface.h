@@ -9,7 +9,7 @@
 
 typedef void (*fpInt)(int arg);
 typedef void (*fpIntChar)(int arg, char* str);
-typedef void (*fpKeyPress)(int keyCode, char* keyString, char** modifiers);
+typedef void (*fpKeyPress)(int keyCode, char* keyString, int modifiers);
 
 #define UNUSED(x) (void)(x)
 #ifdef __cplusplus
