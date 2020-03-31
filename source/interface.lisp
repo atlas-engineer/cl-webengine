@@ -4,7 +4,6 @@
 (defvar callbacks ())
 (defstruct callback
   (id)
-  (web-view)
   (function))
 
 (defcfun ("newKeyPressFilter" new-key-press-filter) :pointer
