@@ -1,5 +1,49 @@
-* cl-webengine
+* cl-webengine - QtWebEngine binding for Common Lisp
 Bindings to Qt and WebEngine.
+
+* How it Works
+Common Lisp has a way to interact with C code via the so called CFFI
+(C Foreign Function Interface). This interface allows any C code to be
+called by Common Lisp. At this time, there is no universal foreign
+function interface for C++. This presents a problem when we wish to
+call Qt code (which is written in C++).
+
+In order to circumvent this problem, we can write functions in C that
+call the C++ code that we need. Concretely it looks like this:
+
++ =interface.cpp= we declare a function to wrap some C++ function we
+  want to use.
++ =interface.cpp= we implement the C function declared in
+  =interface.cpp= with the C++ code inside of it.
++ =interface.lisp= we implement a definition via CFFI so that Lisp
+  code can call the function defined in =interface.cpp=
+
+In this way, we can now invoke C++ through Lisp. A concrete example is
+shown below for a single function:
+
+** interface.h
+#+NAME: interface.h
+#+BEGIN_SRC C++
+extern "C" void widgetShow(void* widget);
+#+END_SRC
+
+** interface.cpp
+#+NAME: interface.cpp
+#+BEGIN_SRC cpp
+void widgetShow(void* widget) {
+    QWidget *_widget = reinterpret_cast<QWidget*>(widget);
+    _widget->show();
+}
+#+END_SRC
+
+** interface.lisp
+#+NAME: interface.lisp
+#+BEGIN_SRC lisp
+(defcfun ("widgetShow" widget-show) :void
+  (widget :pointer))
+(export 'widget-show)
+#+END_SRC
+
 * Compilation
 #+NAME: compilation
 #+BEGIN_SRC shell
@@ -8,13 +52,26 @@ make clean
 make
 #+END_SRC
 
-Running in SBCL on macOS:
+After compiling, you will need to copy the shared libraries to a
+location where CFFI can find them. If you need to append a location
+for CFFI, you can add the following lines to your Lisp initialization:
+
+#+NAME: sbclrc
+#+BEGIN_SRC lisp
+(ql:quickload :cffi)
+(pushnew "/opt/local/lib/" cffi:*foreign-library-directories* :test #'equal)
+#+END_SRC
+
+The above demonstrates an example in SBCL, where the location of the
+shared library will be in =/opt/local/lib=.
+
+* Running in SBCL on macOS:
 #+NAME: configuration
 #+BEGIN_SRC lisp
 (sb-int:with-float-traps-masked (:invalid :inexact :overflow) (cl-webengine::run))
 #+END_SRC
 
-Running from Slime in SBCL on macOS:
+* Running from Slime in SBCL on macOS:
 #+NAME: configuration
 #+BEGIN_SRC lisp
 (trivial-main-thread:call-in-main-thread 
