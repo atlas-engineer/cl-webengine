@@ -17,6 +17,8 @@ typedef void (*fpIntChar)(int arg, char* str);
 #define EXTERNC
 #endif
 
+EXTERNC void* newKeyPressFilter(int id, fpInt callback);
+EXTERNC void widgetInstallKeyPressFilter(void* widget, void* keyPressFilter);
 EXTERNC int windowIsActiveWindow(void* window);
 EXTERNC QApplication* newQApplication(int argc, char** argv);
 EXTERNC void* newLoadFinishedListener(int id, fpInt callback);
@@ -75,7 +77,9 @@ public slots:
 class KeyPressFilter : public QObject
 {
     Q_OBJECT
-
+public:
+    int id;
+    fpInt callback;
 protected:
     bool eventFilter(QObject *obj, QEvent *event);
 };

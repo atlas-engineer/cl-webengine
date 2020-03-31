@@ -1,5 +1,18 @@
 #include "interface.h"
 
+void* newKeyPressFilter(int id, fpInt callback) {
+    KeyPressFilter *keyPressFilter = new KeyPressFilter();
+    keyPressFilter->id = id;
+    keyPressFilter->callback = callback;
+    return keyPressFilter;
+}
+
+void widgetInstallKeyPressFilter(void* widget, void* keyPressFilter) {
+    KeyPressFilter *_keyPressFilter = reinterpret_cast<KeyPressFilter*>(keyPressFilter);
+    QWidget *_widget = reinterpret_cast<QWidget*>(widget);
+    _widget->installEventFilter(_keyPressFilter);
+}
+
 bool KeyPressFilter::eventFilter(QObject *obj, QEvent *event) {
     if (event->type() == QEvent::KeyPress) {
         QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
@@ -205,10 +218,12 @@ int main (int argc, char** argv) {
     QWidget *window = reinterpret_cast<QWidget*>(newQWidget());
     QVBoxLayout *layout = reinterpret_cast<QVBoxLayout*>(newQVBoxLayout());
     QWebEngineView *web = reinterpret_cast<QWebEngineView*>(newQWebEngineView());
+    KeyPressFilter *keyPressFilter = new KeyPressFilter();
     webEngineViewLoad(web, (char*)"https://www.duckduckgo.com");
     layoutAddWidget(layout, web);
     widgetSetLayout(window, layout);
     widgetShow(window);
     windowShowFullScreen(window);
+    window->installEventFilter(keyPressFilter);
     return app->exec();
 }
