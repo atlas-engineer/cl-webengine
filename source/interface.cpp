@@ -1,5 +1,16 @@
 #include "interface.h"
 
+bool KeyPressFilter::eventFilter(QObject *obj, QEvent *event) {
+    if (event->type() == QEvent::KeyPress) {
+        QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
+        qDebug("Key press %d", keyEvent->key());
+        return true;
+    } else {
+        // standard event processing
+        return QObject::eventFilter(obj, event);
+    }
+}
+
 void* newLoadFinishedListener(int id, fpInt callback) {
     LoadFinishedListener *listener = new LoadFinishedListener();
     listener->id = id;
@@ -194,8 +205,6 @@ int main (int argc, char** argv) {
     QWidget *window = reinterpret_cast<QWidget*>(newQWidget());
     QVBoxLayout *layout = reinterpret_cast<QVBoxLayout*>(newQVBoxLayout());
     QWebEngineView *web = reinterpret_cast<QWebEngineView*>(newQWebEngineView());
-    LoadStartedListener *listener = new LoadStartedListener();
-    QObject::connect(web, &QWebEngineView::loadStarted, listener, &LoadStartedListener::loadStarted);
     webEngineViewLoad(web, (char*)"https://www.duckduckgo.com");
     layoutAddWidget(layout, web);
     widgetSetLayout(window, layout);

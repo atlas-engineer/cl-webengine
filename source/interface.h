@@ -5,6 +5,7 @@
 #include <QWebEngineView>
 #include <QThread>
 #include <QWindow>
+#include <QKeyEvent>
 
 typedef void (*fpInt)(int arg);
 typedef void (*fpIntChar)(int arg, char* str);
@@ -69,4 +70,12 @@ class LoadFinishedListener :public Listener {
     Q_OBJECT
 public slots:
     void loadFinished(bool ok);
+};
+
+class KeyPressFilter : public QObject
+{
+    Q_OBJECT
+
+protected:
+    bool eventFilter(QObject *obj, QEvent *event);
 };
