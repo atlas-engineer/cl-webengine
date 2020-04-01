@@ -33,8 +33,8 @@
    web-engine-view))
 (export 'load-finished-listener-connect)
 
-(cffi:defcallback load-finished
-    :void ((id :int))
+(cffi:defcallback load-finished :void
+    ((id :int))
   (let* ((callback (find id callbacks :key (function callback-id))))
     (when (callback-function callback)
       (funcall (callback-function callback)))))
@@ -56,8 +56,8 @@
    web-engine-view))
 (export 'load-started-listener-connect)
 
-(cffi:defcallback load-started
-    :void ((id :int))
+(cffi:defcallback load-started :void
+    ((id :int))
   (let* ((callback (find id callbacks :key (function callback-id))))
     (when (callback-function callback)
       (funcall (callback-function callback)))))
@@ -118,9 +118,9 @@
   (id :int)
   (callback :pointer))
 
-(cffi:defcallback javascript-finished
-    :void ((id :int)
-           (result :string))
+(cffi:defcallback javascript-finished :void
+    ((id :int)
+     (result :string))
   (let* ((callback (find id callbacks :key (function callback-id))))
     (setf callbacks (delete callback callbacks))
     (when (callback-function callback)
