@@ -25,10 +25,9 @@ bool KeyPressFilter::eventFilter(QObject *obj, QEvent *event) {
         }
         QByteArray keyStringArray = text.toUtf8();
         char* keyString = keyStringArray.data();
-        int modifiers = keyEvent->nativeModifiers();
-        if (modifiers != 0) {
-            qDebug("Key press %d, modifiers %d, string %s",
-                   keyCode, modifiers, keyString);
+        int modifierFlags = keyEvent->nativeModifiers();
+        if (modifierFlags != 0) {
+            callback(id, keyCode, keyString, modifierFlags);
         }
         return true;
     } else {

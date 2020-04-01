@@ -7,22 +7,59 @@
   (function))
 
 (defclass event ()
-  ((init-time :accessor init-time :initarg :init-time)))
+  ((qt-object :accessor qt-object :documentation "The pointer to the
+   Qt event object.")
+   (init-time :accessor init-time :initarg :init-time)))
 
 (defclass keypress-event (event)
   ((key-code :accessor key-code :initarg :key-code)
    (key-string :accessor key-string :initarg :key-string)
-   (modifier-flags :accessor modifier-flags :initarg :modifier-flags)
+   (modifier-flags :accessor modifier-flags :initarg :modifier-flags
+   :documentation "The unmasked integer value of the currently
+   depressed modifiers as reported by Qt.")
    (modifiers :accessor modifiers :initarg :modifiers)))
+(export '(key-code key-string modifiers))
+
+(defparameter qt-keyboard-modifiers
+  (list 33554432  "s"   ; Shift
+        67108864  "C"   ; Control
+        134217728 "M"   ; Alt
+        268435456 "M")) ; Meta
+(defmethod initialize-instance :after ((event keypress-event) &key)
+  (setf (modifiers event)
+        (loop for (i y) on qt-keyboard-modifiers by #'cddr
+              when (logand i (modifier-flags event))
+                collect y)))
+
+(cffi:defcallback key-pressed :void
+    ((id :int)
+     (key-code :int)
+     (key-string :string)
+     (modifier-flags :int))
+  (let* ((callback (find id callbacks :key (function callback-id))))
+    (when (callback-function callback)
+      (let ((event (make-instance
+                    'keypress-event
+                    :key-code key-code
+                    :key-string key-string
+                    :modifier-flags modifier-flags)))
+        (funcall (callback-function callback) event)))))
 
 (defcfun ("newKeyPressFilter" new-key-press-filter) :pointer
   (id :int)
   (callback :pointer))
 (export 'new-key-press-filter)
 
-(defcfun ("widgetInstallKeyPressFilter" widget-install-key-press-filter) :pointer
+(defcfun ("widgetInstallKeyPressFilter" %widget-install-key-press-filter) :pointer
   (widget :pointer)
   (key-press-filter :pointer))
+
+(defun widget-install-key-press-filter (widget callback)
+  (incf callback-counter)
+  (push (make-callback :id callback-counter :function callback) callbacks)
+  (%widget-install-key-press-filter
+   widget
+   (new-key-press-filter callback-counter (cffi:callback key-pressed))))
 (export 'widget-install-key-press-filter)
 
 (defcfun ("newLoadFinishedListener" new-load-finished-listener) :pointer

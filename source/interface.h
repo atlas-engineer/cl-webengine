@@ -9,7 +9,7 @@
 
 typedef void (*fpInt)(int arg);
 typedef void (*fpIntChar)(int arg, char* str);
-typedef void (*fpKeyPress)(int keyCode, char* keyString, int modifiers);
+typedef void (*fpKeyPress)(int id, int keyCode, char* keyString, int modifierFlags);
 
 #define UNUSED(x) (void)(x)
 #ifdef __cplusplus
@@ -18,7 +18,7 @@ typedef void (*fpKeyPress)(int keyCode, char* keyString, int modifiers);
 #define EXTERNC
 #endif
 
-EXTERNC void* newKeyPressFilter(int id, fpInt callback);
+EXTERNC void* newKeyPressFilter(int id, fpKeyPress callback);
 EXTERNC void widgetInstallKeyPressFilter(void* widget, void* keyPressFilter);
 EXTERNC int windowIsActiveWindow(void* window);
 EXTERNC QApplication* newQApplication(int argc, char** argv);
