@@ -26,9 +26,7 @@ bool KeyPressFilter::eventFilter(QObject *obj, QEvent *event) {
         QByteArray keyStringArray = text.toUtf8();
         char* keyString = keyStringArray.data();
         int modifierFlags = keyEvent->modifiers();
-        if (modifierFlags != 0) {
-            callback(id, keyCode, keyString, modifierFlags);
-        }
+        callback(id, keyCode, keyString, modifierFlags);
         return true;
     } else {
         return QObject::eventFilter(obj, event);
