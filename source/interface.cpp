@@ -25,7 +25,7 @@ bool KeyPressFilter::eventFilter(QObject *obj, QEvent *event) {
         }
         QByteArray keyStringArray = text.toUtf8();
         char* keyString = keyStringArray.data();
-        int modifierFlags = keyEvent->nativeModifiers();
+        int modifierFlags = keyEvent->modifiers();
         if (modifierFlags != 0) {
             callback(id, keyCode, keyString, modifierFlags);
         }
@@ -234,7 +234,6 @@ int main (int argc, char** argv) {
     layoutAddWidget(layout, web);
     widgetSetLayout(window, layout);
     widgetShow(window);
-    windowShowFullScreen(window);
     window->installEventFilter(keyPressFilter);
     return app->exec();
 }

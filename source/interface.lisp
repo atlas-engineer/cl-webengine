@@ -28,7 +28,7 @@
 (defmethod initialize-instance :after ((event keypress-event) &key)
   (setf (modifiers event)
         (loop for (i y) on qt-keyboard-modifiers by #'cddr
-              when (logand i (modifier-flags event))
+              unless (zerop (logand i (modifier-flags event)))
                 collect y)))
 
 (cffi:defcallback key-pressed :void
