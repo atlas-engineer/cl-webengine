@@ -6,6 +6,15 @@
   (id)
   (function))
 
+(defclass event ()
+  ((init-time :accessor init-time :initarg :init-time)))
+
+(defclass keypress-event (event)
+  ((key-code :accessor key-code :initarg :key-code)
+   (key-string :accessor key-string :initarg :key-string)
+   (modifier-flags :accessor modifier-flags :initarg :modifier-flags)
+   (modifiers :accessor modifiers :initarg :modifiers)))
+
 (defcfun ("newKeyPressFilter" new-key-press-filter) :pointer
   (id :int)
   (callback :pointer))
