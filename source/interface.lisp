@@ -21,10 +21,10 @@
 (export '(key-code key-string modifiers))
 
 (defparameter qt-keyboard-modifiers
-  (list 33554432  "s"   ; Shift
-        67108864  "C"   ; Control
-        134217728 "M"   ; Alt
-        268435456 "M")) ; Meta
+  (list 33554432  "shift"   ; Shift
+        67108864  "control" ; Control
+        134217728 "meta"    ; Alt
+        268435456 "meta"))  ; Meta
 (defmethod initialize-instance :after ((event keypress-event) &key)
   (setf (modifiers event)
         (loop for (i y) on qt-keyboard-modifiers by #'cddr
