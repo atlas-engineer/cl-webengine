@@ -26,6 +26,10 @@ bool KeyPressFilter::eventFilter(QObject *obj, QEvent *event) {
         QByteArray keyStringArray = text.toUtf8();
         char* keyString = keyStringArray.data();
         int modifierFlags = keyEvent->modifiers();
+        // -31 emitted as keystring when only modifiers pressed
+        if ((int)keyString[0] == -31) {
+            keyString = (char*)"";
+        }
         callback(id, keyCode, keyString, modifierFlags);
         return true;
     } else {
