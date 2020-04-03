@@ -201,6 +201,10 @@
   (widget :pointer))
 (export 'widget-show)
 
+(defcfun ("widgetHide" widget-hide) :void
+  (widget :pointer))
+(export 'widget-hide)
+
 (defcfun ("widgetResize" widget-resize) :void
   (widget :pointer)
   (width :int)

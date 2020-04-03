@@ -169,6 +169,11 @@ void widgetShow(void* widget) {
     _widget->show();
 }
 
+void widgetHide(void* widget) {
+    QWidget *_widget = reinterpret_cast<QWidget*>(widget);
+    _widget->hide();
+}
+
 void widgetResize(void* widget, int width, int height) {
     QWidget *_widget = reinterpret_cast<QWidget*>(widget);
     _widget->resize(width, height);

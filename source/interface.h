@@ -43,6 +43,7 @@ EXTERNC void layoutAddWidget(void* layout, void* widget);
 EXTERNC void widgetSetLayout(void* widget, void* layout);
 EXTERNC void widgetSetParent(void* widget, void* parent);
 EXTERNC void widgetShow(void* widget);
+EXTERNC void widgetHide(void* widget);
 EXTERNC void widgetResize(void* widget, int width, int height);
 EXTERNC void widgetSetFixedHeight(void* widget, int height);
 EXTERNC void widgetSetFixedSize(void* widget, int width, int height);
