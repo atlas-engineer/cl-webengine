@@ -44,6 +44,17 @@ void widgetShow(void* widget) {
 (export 'widget-show)
 #+END_SRC
 
+* Dependencies
+
+The library requires Qt5 and Qt5 Webengine.
+More specifically, you don't need all of Qt5, the following Qt5 components are
+enough:
+
+- qtbase
+- qtwebengine
+- qtwebchannel
+- qtdeclarative
+
 * Compilation
 #+NAME: compilation
 #+BEGIN_SRC shell
