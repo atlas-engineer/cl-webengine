@@ -11,10 +11,10 @@ call Qt code (which is written in C++).
 In order to circumvent this problem, we can write functions in C that
 call the C++ code that we need. Concretely it looks like this:
 
-+ =interface.cpp= we declare a function to wrap some C++ function we
++ =interface.h= we declare a function to wrap some C++ function we
   want to use.
 + =interface.cpp= we implement the C function declared in
-  =interface.cpp= with the C++ code inside of it.
+  =interface.h= with the C++ code inside of it.
 + =interface.lisp= we implement a definition via CFFI so that Lisp
   code can call the function defined in =interface.cpp=
 
@@ -71,9 +71,9 @@ shared library will be in =/opt/local/lib=.
 (sb-int:with-float-traps-masked (:invalid :inexact :overflow) (cl-webengine::run))
 #+END_SRC
 
-* Running from Slime in SBCL on macOS:
+* Running from SLIME in SBCL on macOS:
 #+NAME: configuration
 #+BEGIN_SRC lisp
 (trivial-main-thread:call-in-main-thread 
-          (lambda () (sb-int:with-float-traps-masked (:invalid :inexact :overflow) (cl-webengine::run))))
+  (lambda () (sb-int:with-float-traps-masked (:invalid :inexact :overflow) (cl-webengine::run))))
 #+END_SRC
