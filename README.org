@@ -58,9 +58,7 @@ enough:
 * Compilation
 #+NAME: compilation
 #+BEGIN_SRC shell
-qmake
-make clean
-make
+make all
 #+END_SRC
 
 After compiling, you will need to copy the shared libraries to a
