@@ -77,6 +77,8 @@ void LoadStartedListener::loadStarted() {
 }
 
 QApplication* newQApplication(int argc, char** argv) {
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
     return new QApplication(argc, argv);
 }
 
@@ -237,7 +239,7 @@ void layoutInsertWidget(void* layout, int index, void* widget) {
 }
 
 int main (int argc, char** argv) {
-    QApplication* app = new QApplication(argc, argv);
+    QApplication* app = reinterpret_cast<QApplication*>(newQApplication(argc, argv));
     QWidget *window = reinterpret_cast<QWidget*>(newQWidget());
     QVBoxLayout *layout = reinterpret_cast<QVBoxLayout*>(newQVBoxLayout());
     QWebEngineView *web = reinterpret_cast<QWebEngineView*>(newQWebEngineView());
