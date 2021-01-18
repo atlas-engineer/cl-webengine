@@ -194,30 +194,30 @@ void widgetSetFixedSize(void* widget, int width, int height) {
     _widget->setFixedSize(width, height);
 }
 
-void windowSetWindowTitle(void* window, char* title) {
-    QWidget *_window = reinterpret_cast<QWidget*>(window);
-    _window->setWindowTitle(title);
+void widgetSetWindowTitle(void* widget, char* title) {
+    QWidget *_widget = reinterpret_cast<QWidget*>(widget);
+    _widget->setWindowTitle(title);
 }
 
-int windowIsActiveWindow(void* window) {
-    QWidget *_window = reinterpret_cast<QWidget*>(window);
-    return _window->isActiveWindow();
+int widgetIsActiveWindow(void* widget) {
+    QWidget *_widget = reinterpret_cast<QWidget*>(widget);
+    return _widget->isActiveWindow();
 }
 
-void windowShowFullScreen(void* window) {
-    QWidget *_window = reinterpret_cast<QWidget*>(window);
-    _window->showFullScreen();
+void widgetShowFullScreen(void* widget) {
+    QWidget *_widget = reinterpret_cast<QWidget*>(widget);
+    _widget->showFullScreen();
 }
 
-void windowShowNormal(void* window) {
-    QWidget *_window = reinterpret_cast<QWidget*>(window);
-    _window->showNormal();
+void widgetShowNormal(void* widget) {
+    QWidget *_widget = reinterpret_cast<QWidget*>(widget);
+    _widget->showNormal();
 }
 
-void windowPresent(void* window) {
-    QWidget *_window = reinterpret_cast<QWidget*>(window);
-    _window->show();
-    _window->raise();
+void widgetPresent(void* widget) {
+    QWidget *_widget = reinterpret_cast<QWidget*>(widget);
+    _widget->show();
+    _widget->raise();
 }
 
 void layoutSetContentsMargins(void* layout, int left, int top, int right, int bottom) {
