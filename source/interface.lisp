@@ -226,29 +226,29 @@
   (height :int))
 (export 'widget-set-fixed-size)
 
-(defcfun ("windowSetWindowTitle" window-set-window-title) :void
-  (window :pointer)
+(defcfun ("widgetSetWindowTitle" widget-set-window-title) :void
+  (widget :pointer)
   (title :string))
-(export 'window-set-window-title)
+(export 'widget-set-window-title)
 
-(defcfun ("windowShowFullScreen" window-show-full-screen) :void
-  (window :pointer))
-(export 'window-show-full-screen)
+(defcfun ("widgetShowFullScreen" widget-show-full-screen) :void
+  (widget :pointer))
+(export 'widget-show-full-screen)
 
-(defcfun ("windowShowNormal" window-show-normal) :void
-  (window :pointer))
-(export 'window-show-normal)
+(defcfun ("widgetShowNormal" widget-show-normal) :void
+  (widget :pointer))
+(export 'widget-show-normal)
 
-(defcfun ("windowPresent" window-present) :void
-  (window :pointer))
-(export 'window-present)
+(defcfun ("widgetPresent" widget-present) :void
+  (widget :pointer))
+(export 'widget-present)
 
-(defcfun ("windowIsActiveWindow" %window-is-active-window) :int
-  (window :pointer))
+(defcfun ("widgetIsActiveWindow" %widget-is-active-window) :int
+  (widget :pointer))
 
-(defun window-is-active-window (window)
-  (if (> (%window-is-active-window window) 0) t nil))
-(export 'window-is-active-window)
+(defun widget-is-active-window (widget)
+  (if (> (%widget-is-active-window widget) 0) t nil))
+(export 'widget-is-active-window)
 
 (defcfun ("layoutSetContentsMargins" layout-set-contents-margins) :void
   (layout :pointer)
