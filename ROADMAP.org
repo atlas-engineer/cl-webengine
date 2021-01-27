@@ -1,0 +1,214 @@
+#+TITLE:Functions from Qt and QtWebEngine
+
+This is a list of Qt functions to be wrapped inside C functions for
+binding with Common Lisp FFI.
+
+- Headings are names of Qt classes that need to be wrapped or have
+  already been wrapped inside C functions.
+
+Those Qt functions that are marked as done ([X]) already have some
+implementation. The name(s) of function(s) implementing these is in
+the sub-list. A heading is marked as "DONE" if all of its functions
+are marked as done. Otherwise, it is marked as "TODO."
+
+- The heading "Undefined functions for Nyxt" contains Common Lisp FFI
+  methods for Nyxt Browser that need to rely on Qt wrappers but
+  cannot be mapped to Qt classes at the moment.
+
+- FFI methods that have a question mark after them are the ones that
+  have no obvious way to be implemented.
+  
+* DONE QApplication
+- [X] QApplication::QApplication()
+  - newQApplication()
+- [X] QApplication::quit()
+  - applicationQuit()
+- [X] QApplication::exec()
+  - applicationExec()
+
+* TODO QWidget
+- [X] delete QWidget
+  - widgetDelete()
+- [ ] QWidget::destroy()
+- [X] QWidget::showFullScreen()
+  - widgetShowFullScreen()
+- [X] QWidget::showNormal()
+  - widgetShowNormal()
+- [X] QWidget::resize()
+  - widgetResize()
+- [X] QWidget::QWidget()
+  - newQWidget()
+- [X] QWidget::setLayout()
+  - widgetSetLayout()
+- [X] QWidget::show()
+  - widgetShow()
+- [ ] QWidget::keyPressEvent()
+- [ ] QWidget::keyReleaseEvent()
+- [ ] QWidget::MouseMoveEvent()
+- [ ] QWidget::MousePressEvent()
+- [ ] QWidget::MouseDoubleClickEvent()
+- [ ] QWidget::WheelEvent()
+- [ ] QWidget::inputMethodEvent()
+- [ ] QWidget::contextMenuEvent()
+- [X] QWidget::setWindowTitle()
+  - widgetSetWindowTitle()
+- [ ] QWidget::height()
+- [X] QWidget::isActiveWindow()
+ - widgetIsActiveWindow()
+- [X] QWidget::isActiveWindow()
+ - widgetIsActiveWindow()
+- [X] QWidget::show(), QWindow::raise()
+  - widgetPresent()
+- [X] QWidget::setParent(), QWindow::raise()
+  - widgetSetParent()
+- [X] QWidget::setFixedHeight()
+  - widgetSetFixedHeight()
+- [X] QWidget::setFixedSize()
+  - widgetSetFixedSize()
+
+* TODO QWindow
+- [X] QWindow::QWindow()
+  - newQWindow()
+- [ ] QWindow::show(), QWindow::raise()
+  - windowPresent()
+- [ ] QWindow::setTitle()
+ - windowSetTitle()
+- [ ] QWindow::title()
+- [ ] QWindow::isActive()
+
+* DONE QVBoxLayout
+- [X] QVBoxLayout::QVBoxLayout()
+  - newQVBoxLayout()
+
+* DONE QHBoxLayout
+- [X] QHBoxLayout::QHBoxLayout()
+  - newQHBoxLayout()
+
+* TODO QLayout
+- [X] QLayout::setWidget()
+  - layoutAddWidget()
+- [X] QLayout::setContentMargins()
+  - layoutSetContentsMargins()
+- [X] QLayout::setSpacing()
+  - layoutSetSpacing()
+- [ ] QLayout::removeWidget()
+
+* DONE QPushButton
+- [X] QPushButton::QPushButton()
+  - newQPushButton()
+
+* TODO QWebEngineView
+- [X] QWebEngineView::QWebEngineView()
+  - newQWebEngineView()
+- [ ] QtWebEngineView::title()
+- [X] QtWebEngineView::url()
+  - webEngineViewUrl()
+- [X] QWebEngineView::setUrl()
+  - webEngineViewLoad()
+- [X] QWebEngineView::QWebEngineView()
+  - newQWebEngineView()
+- [X] QWebEngineView::loadStarted()
+  - newLoadStartedListener()
+  - loadStartedListenerConnect()
+  - LoadStartedListener::loadStarted()
+- [X] QWebEngineView::loadFinished()
+  - newLoadFinishedListener()
+  - loadFinishedListenerConnect()
+  - LoadFinishedListener::loadFinished()
+- [ ] QWebEngineView::audioMuted()
+- [ ] QWebEngineView::setAudioMuted()
+- [X] QWebEngineView::page()
+  - newQWebEngineViewPage()
+
+* TODO QWebEnginePage
+- [ ] QWebEnginePage::livecycleState()
+- [ ] enum QWebEnginePage::LivecycleState
+- [X] QWebEnginePage::runJavaScript()
+  - webEnginePageRunJavaScript()
+- [X] QWebEnginePage::setHtml()
+  - webEnginePageSetHtml()
+- [ ] enum QWebEnginePage::WebAction
+- [ ] QWebEnginePage::action()
+- [ ] QWebEnginePage::triggerAction()
+- [ ] enum QWebEnginePage::NavigationType
+- [ ] QWebEnginePage::titleChanged()
+- [ ] QWebEnginePage::urlChanged()
+- [ ] QWebEnginePage::setUrlRequestInterceptor()
+- [ ] QWebEnginePage::certificateError()
+- [ ] QWebEnginePage::history()
+- [ ] QWebEnginePage::runJavaScript(const QString &scriptSource, const QWebEngineCallback<const QVariant &> &resultCallback)
+
+* TODO QWebEnginePageFullScreenRequest
+- [ ] QWebEnginePageFullScreenRequest::accept()
+- [ ] QWebEnginePageFullScreenRequest::origin()
+- [ ] QWebEnginePageFullScreenRequest::reject()
+- [ ] QWebEnginePageFullScreenRequest::toggleOn()
+
+* TODO QWebEngineContextMenuData
+- [ ] enum QWebEngineContextMenuData::EditFlags
+- [ ] enum QWebEngineContextMenuData::MediaFlag
+- [ ] enum QWebEngineContextMenuData::MediaType
+- [ ] QWebEngineContextMenuData::misspelledWord()
+- [ ] QWebEngineContextMenuData::spellCheckerSuggestions()
+  
+* TODO QWebEngineProfile
+- [ ] QWebEngineProfile::setUrlRequestInterceptor
+- [ ] QWebEngineProfile::setHttpUserAgent()
+- [ ] QWebEngineProfile::setHttpAcceptLanguage()
+
+* TODO QWebengnineUrlRequestInterceptor
+- [ ] QWebEngineUrlRequestInterceptor::QWebEngineUrlRequestInterceptor()
+- [ ] QWebEngineUrlRequestInterceptor::interceptRequest()
+
+* TODO QWebEngineUrlRequestInfo
+- [ ] enum QWebEngineUrlRequestInfo::NavigationType
+- [ ] enum QWebEngineUrlRequestInfo::ResourceType
+- [ ] QWebEngineUrlRequestInfo::block()
+- [ ] QWebEngineUrlRequestInfo::firstPartyUrl()
+- [ ] QWebEngineUrlRequestInfo::initiator()
+- [ ] QWebEngineUrlRequestInfo::navigationType()
+- [ ] QWebEngineUrlRequestInfo::redirect()
+- [ ] QWebEngineUrlRequestInfo::requestMethod()
+- [ ] QWebEngineUrlRequestInfo::requestUrl()
+- [ ] QWebEngineUrlRequestInfo::resourceType()
+- [ ] QWebEngineUrlRequestInfo::setHttpHeader()
+
+* TODO QWebEngineCertificateError
+- [ ] enum QWebEngineCertificateError::Error
+- [ ] QWebEngineCertificateError::url()
+- [ ] QWebEngineCertificateError::error()
+- [ ] QWebEngineCertificateError::errorDescription()
+- [ ] QWebEngineCertificateError::isOverridable()
+- [ ] QWebEngineCertificateError::ignoreCertificateError()
+- [ ] QWebEngineCertificateError::rejectCertificate()
+
+* TODO QWebengineHistory
+- [ ] QWebEngineHistory::count()
+- [ ] QWebEngineHistory::currentItem()
+- [ ] QWebEngineHistory::currentItemIndex()
+- [ ] QWebEngineHistory::itemAt()
+- [ ] QWebEngineHistory::goToItem()
+
+* TODO QWebEngineHistoryItem
+- [ ] QWebEngineHistoryItem::originalUrl()
+- [ ] QWebEngineHistoryItem::url()
+- [ ] QWebEngineHistoryItem::title()
+- [ ] QWebEngineHistoryItem::lastVisited()
+- [ ] QWebEngineHistoryItem::iconUrl()
+
+* TODO QWebEngineSettings
+- [ ] QWebEngineSettings::setAttribute()
+- [ ] QWebEngineSettings::resetAttribute()
+- [ ] enum QWebEngineSettings::WebAttribute
+- [ ] QWebEngineSettings::testAttribute()
+
+* TODO QWebEngineCookieStore
+- [ ] QWebEngineCookieStore::setCookieFilter()
+
+* TODO Undefined functions for Nyxt
+** TODO ffi-generate-input-event - ?
+** TODO ffi-generated-input-event-p - ?
+** TODO ffi-display-uri - ?
+** TODO ffi-buffer-enable-javascript-markup - ?
+** TODO ffi-buffer-set-proxy - ?
+** TODO ffi-buffer-get-proxy - ?
