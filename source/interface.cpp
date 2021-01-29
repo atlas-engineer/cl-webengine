@@ -152,6 +152,32 @@ void layoutAddWidget(void* layout, void* widget) {
     _layout->addWidget(_widget);
 }
 
+void windowShow(void* window){
+    QWindow *_window = reinterpret_cast<QWindow*>(window);
+    _window->show();
+}
+
+void windowPresent(void* window) {
+    QWindow *_window = reinterpret_cast<QWindow*>(window);
+    _window->show();
+    _window->raise();
+ }
+
+void windowSetTitle(void* window, char* title){
+    QWindow *_window = reinterpret_cast<QWindow*>(window);
+    _window->setTitle(title);
+}
+
+char* windowTitle(void* window){
+    QWindow *_window = reinterpret_cast<QWindow*>(window);
+    return _window->title().toUtf8().data();
+}
+
+int windowIsActive(void* window) {
+    QWindow *_window = reinterpret_cast<QWindow*>(window);
+    return _window->isActive();
+}
+
 void widgetSetLayout(void* widget, void* layout) {
     QWidget *_widget = reinterpret_cast<QWidget*>(widget);
     QLayout *_layout = reinterpret_cast<QLayout*>(layout);
