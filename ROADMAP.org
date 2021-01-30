@@ -69,12 +69,16 @@ are marked as done. Otherwise, it is marked as "TODO."
 * TODO QWindow
 - [X] QWindow::QWindow()
   - newQWindow()
-- [ ] QWindow::show(), QWindow::raise()
+- [X] QWindow::show()
+  - windowShow()
+- [X] QWindow::show(), QWindow::raise()
   - windowPresent()
-- [ ] QWindow::setTitle()
+- [X] QWindow::setTitle()
  - windowSetTitle()
-- [ ] QWindow::title()
-- [ ] QWindow::isActive()
+- [X] QWindow::title()
+ - windowTitle()
+- [X] QWindow::isActive()
+ - windowIsActive()
 
 * DONE QVBoxLayout
 - [X] QVBoxLayout::QVBoxLayout()
