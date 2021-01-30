@@ -187,6 +187,30 @@
   (widget :pointer))
 (export 'layout-add-widget)
 
+(defcfun ("windowShow" window-show) :void
+  (window :pointer))
+(export 'window-show)
+
+(defcfun ("windowPresent" window-present) :void
+  (window :pointer))
+(export 'window-present)
+
+(defcfun ("windowSetTitle" window-set-title) :void
+  (window :pointer)
+  (title :string))
+(export 'window-set-title)
+
+(defcfun ("windowTitle" window-title) :string
+  (window :pointer))
+(export 'window-title)
+
+(defcfun ("windowIsActive" %window-is-active) :int
+  (window :pointer))
+
+(defun window-is-active (window)
+  (> (%window-is-active window) 0))
+(export 'window-is-active)
+
 (defcfun ("widgetSetLayout" widget-set-layout) :void
   (widget :pointer)
   (layout :pointer))
