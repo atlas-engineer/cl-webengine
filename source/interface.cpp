@@ -7,6 +7,10 @@ void* newKeyPressFilter(int id, fpKeyPress callback) {
     return keyPressFilter;
 }
 
+void* newEmptyKeyPressFilter () {
+    return (void*) new KeyPressFilter();
+}
+
 void widgetInstallKeyPressFilter(void* widget, void* keyPressFilter) {
     KeyPressFilter *_keyPressFilter = reinterpret_cast<KeyPressFilter*>(keyPressFilter);
     QWidget *_widget = reinterpret_cast<QWidget*>(widget);
@@ -76,8 +80,8 @@ void LoadStartedListener::loadStarted() {
     return;
 }
 
-QApplication* newQApplication(int argc, char** argv) {
-    return new QApplication(argc, argv);
+void* newQApplication(int argc, char** argv) {
+    return (void*) new QApplication(argc, argv);
 }
 
 int applicationExec(void* application) {
@@ -91,34 +95,34 @@ void applicationQuit(void* application) {
     return;
 }
 
-QWidget* newQWidget() {
+void* newQWidget() {
     QWidget *widget = new QWidget;
-    return widget;
+    return (void*) widget;
 }
 
-QWindow* newQWindow() {
+void* newQWindow() {
     QWindow *window = new QWindow;
-    return window;
+    return (void*) window;
 }
 
-QVBoxLayout* newQVBoxLayout() {
+void* newQVBoxLayout() {
     QVBoxLayout *layout = new QVBoxLayout;
-    return layout;
+    return (void*) layout;
 }
 
-QHBoxLayout* newQHBoxLayout() {
+void* newQHBoxLayout() {
     QHBoxLayout *layout = new QHBoxLayout;
-    return layout;
+    return (void*) layout;
 }
 
-QPushButton* newQPushButton(char* label){
+void* newQPushButton(char* label){
     QPushButton *pushButton = new QPushButton(label);
-    return pushButton;
+    return (void*) pushButton;
 }
 
-QWebEngineView* newQWebEngineView() {
+void* newQWebEngineView() {
     QWebEngineView *webEngineView = new QWebEngineView();
-    return webEngineView;
+    return (void*) webEngineView;
 }
 
 void webEngineViewLoad(void* webEngineView, char* url) {
@@ -263,15 +267,15 @@ void layoutInsertWidget(void* layout, int index, void* widget) {
 }
 
 int main (int argc, char** argv) {
-    QApplication* app = new QApplication(argc, argv);
-    QWidget *window = reinterpret_cast<QWidget*>(newQWidget());
-    QVBoxLayout *layout = reinterpret_cast<QVBoxLayout*>(newQVBoxLayout());
-    QWebEngineView *web = reinterpret_cast<QWebEngineView*>(newQWebEngineView());
-    KeyPressFilter *keyPressFilter = new KeyPressFilter();
+    void *app = newQApplication(argc, argv);
+    void *window = newQWidget();
+    void *layout = newQVBoxLayout();
+    void *web = newQWebEngineView();
+    void *keyPressFilter = newEmptyKeyPressFilter();
     webEngineViewLoad(web, (char*)"https://www.duckduckgo.com");
     layoutAddWidget(layout, web);
     widgetSetLayout(window, layout);
     widgetShow(window);
-    window->installEventFilter(keyPressFilter);
-    return app->exec();
+    widgetInstallKeyPressFilter(window, keyPressFilter);
+    return applicationExec(app);
 }
