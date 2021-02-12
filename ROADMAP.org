@@ -126,6 +126,7 @@ are marked as done. Otherwise, it is marked as "TODO."
 
 * TODO QWebEnginePage
 - [ ] QWebEnginePage::livecycleState()
+- [ ] QWebEnginePage::setLivecycleState()
 - [ ] enum QWebEnginePage::LivecycleState
 - [X] QWebEnginePage::runJavaScript()
   - webEnginePageRunJavaScript()
@@ -135,6 +136,7 @@ are marked as done. Otherwise, it is marked as "TODO."
 - [ ] QWebEnginePage::action()
 - [ ] QWebEnginePage::triggerAction()
 - [ ] enum QWebEnginePage::NavigationType
+- [ ] QWebEnginePage::acceptNavigationRequest()
 - [ ] QWebEnginePage::titleChanged()
 - [ ] QWebEnginePage::urlChanged()
 - [ ] QWebEnginePage::setUrlRequestInterceptor()
@@ -150,8 +152,11 @@ are marked as done. Otherwise, it is marked as "TODO."
 
 * TODO QWebEngineContextMenuData
 - [ ] enum QWebEngineContextMenuData::EditFlags
-- [ ] enum QWebEngineContextMenuData::MediaFlag
+- [ ] QWebEngineContextMenuData::editFlags()
+- [ ] enum QWebEngineContextMenuData::MediaFlags
+- [ ] QWebEngineContextMenuData::mediaFlags()
 - [ ] enum QWebEngineContextMenuData::MediaType
+- [ ] QWebEngineContextMenuData::mediaType()
 - [ ] QWebEngineContextMenuData::misspelledWord()
 - [ ] QWebEngineContextMenuData::spellCheckerSuggestions()
   
