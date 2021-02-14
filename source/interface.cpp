@@ -146,6 +146,38 @@ void webEnginePageRunJavaScript(void* webEnginePage, char* javascript, int id, f
     _webEnginePage->runJavaScript(javascript, [id, callback](const QVariant &v) { callback(id, v.toString().toUtf8().data()); });
 }
 
+void webEnginePageSetLivecycleState(void* webEnginePage, int state) {
+    QWebEnginePage *_webEnginePage = reinterpret_cast<QWebEnginePage*>(webEnginePage);
+    _webEnginePage->setLifecycleState(static_cast<QWebEnginePage::LifecycleState>(state));
+}
+
+int webEnginePageLivecycleState(void* webEnginePage) {
+    QWebEnginePage *_webEnginePage = reinterpret_cast<QWebEnginePage*>(webEnginePage);
+    return (int)_webEnginePage->lifecycleState();
+}
+
+void webEnginePageTriggerAction(void* webEnginePage, int action, int checked) {
+    QWebEnginePage *_webEnginePage = reinterpret_cast<QWebEnginePage*>(webEnginePage);
+    _webEnginePage->triggerAction(static_cast<QWebEnginePage::WebAction>(action), checked);
+}
+
+void* webEnginePageAction(void* webEnginePage, int action) {
+    QWebEnginePage *_webEnginePage = reinterpret_cast<QWebEnginePage*>(webEnginePage);
+    return _webEnginePage->action(static_cast<QWebEnginePage::WebAction>(action));
+}
+
+void* webEnginePageHistory(void* webEnginePage) {
+    QWebEnginePage *_webEnginePage = reinterpret_cast<QWebEnginePage*>(webEnginePage);
+    return _webEnginePage->history();
+}
+
+void webEnginePageSetUrlRequestInterceptor(void* webEnginePage, void* interceptor) {
+    QWebEnginePage *_webEnginePage = reinterpret_cast<QWebEnginePage*>(webEnginePage);
+    QWebEngineUrlRequestInterceptor *_interceptor
+      = reinterpret_cast<QWebEngineUrlRequestInterceptor*>(interceptor);
+    _webEnginePage->setUrlRequestInterceptor(_interceptor);
+}
+
 void layoutAddWidget(void* layout, void* widget) {
     QLayout *_layout = reinterpret_cast<QLayout*>(layout);
     QWidget *_widget = reinterpret_cast<QWidget*>(widget);
