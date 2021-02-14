@@ -125,25 +125,31 @@ are marked as done. Otherwise, it is marked as "TODO."
   - newQWebEngineViewPage()
 
 * TODO QWebEnginePage
-- [ ] QWebEnginePage::livecycleState()
-- [ ] QWebEnginePage::setLivecycleState()
-- [ ] enum QWebEnginePage::LivecycleState
+- [X] QWebEnginePage::livecycleState()
+ - webEnginePageLivecycleState()
+- [X] QWebEnginePage::setLivecycleState()
+ - webEnginePageSetLivecycleState()
+- [X] enum QWebEnginePage::LivecycleState
 - [X] QWebEnginePage::runJavaScript()
   - webEnginePageRunJavaScript()
 - [X] QWebEnginePage::setHtml()
   - webEnginePageSetHtml()
-- [ ] enum QWebEnginePage::WebAction
-- [ ] QWebEnginePage::action()
-- [ ] QWebEnginePage::triggerAction()
+- [X] enum QWebEnginePage::WebAction
+- [X] QWebEnginePage::action()
+ - webEnginePageAction()
+- [X] QWebEnginePage::triggerAction()
+ - webEnginePageTriggerAction()
 - [ ] enum QWebEnginePage::NavigationType
 - [ ] QWebEnginePage::acceptNavigationRequest()
 - [ ] QWebEnginePage::titleChanged()
 - [ ] QWebEnginePage::urlChanged()
-- [ ] QWebEnginePage::setUrlRequestInterceptor()
+- [X] QWebEnginePage::setUrlRequestInterceptor()
+ - webEnginePageSetUrlRequestInterceptor()
 - [ ] QWebEnginePage::certificateError()
-- [ ] QWebEnginePage::history()
-- [ ] QWebEnginePage::runJavaScript(const QString &scriptSource, const QWebEngineCallback<const QVariant &> &resultCallback)
-
+- [X] QWebEnginePage::history()
+ - webEnginePageHistory()
+- [X] QWebEnginePage::runJavaScript(const QString &scriptSource, quint32 worldid, const QWebEngineCallback<const QVariant &> &resultCallback)
+ - webEnginePageRunJavaScript()
 * TODO QWebEnginePageFullScreenRequest
 - [ ] QWebEnginePageFullScreenRequest::accept()
 - [ ] QWebEnginePageFullScreenRequest::origin()
