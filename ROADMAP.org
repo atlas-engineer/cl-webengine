@@ -119,8 +119,6 @@ are marked as done. Otherwise, it is marked as "TODO."
   - newLoadFinishedListener()
   - loadFinishedListenerConnect()
   - LoadFinishedListener::loadFinished()
-- [ ] QWebEngineView::audioMuted()
-- [ ] QWebEngineView::setAudioMuted()
 - [X] QWebEngineView::page()
   - newQWebEngineViewPage()
 
@@ -150,6 +148,13 @@ are marked as done. Otherwise, it is marked as "TODO."
  - webEnginePageHistory()
 - [X] QWebEnginePage::runJavaScript(const QString &scriptSource, quint32 worldid, const QWebEngineCallback<const QVariant &> &resultCallback)
  - webEnginePageRunJavaScript()
+- [X] QWebEnginePage::url()
+ - webEnginePageUrl()
+- [x] QWebEngineView::isAudioMuted()
+ - webEnginePageIsAudioMuted()
+- [X] QWebEngineView::setAudioMuted()
+ - webEnginePageSetAudioMuted()
+
 * TODO QWebEnginePageFullScreenRequest
 - [ ] QWebEnginePageFullScreenRequest::accept()
 - [ ] QWebEnginePageFullScreenRequest::origin()
