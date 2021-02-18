@@ -163,12 +163,12 @@ void webEnginePageTriggerAction(void* webEnginePage, int action, int checked) {
 
 void* webEnginePageAction(void* webEnginePage, int action) {
     QWebEnginePage *_webEnginePage = reinterpret_cast<QWebEnginePage*>(webEnginePage);
-    return _webEnginePage->action(static_cast<QWebEnginePage::WebAction>(action));
+    return (void*)_webEnginePage->action(static_cast<QWebEnginePage::WebAction>(action));
 }
 
 void* webEnginePageHistory(void* webEnginePage) {
     QWebEnginePage *_webEnginePage = reinterpret_cast<QWebEnginePage*>(webEnginePage);
-    return _webEnginePage->history();
+    return (void*)_webEnginePage->history();
 }
 
 void webEnginePageSetUrlRequestInterceptor(void* webEnginePage, void* interceptor) {
@@ -176,6 +176,21 @@ void webEnginePageSetUrlRequestInterceptor(void* webEnginePage, void* intercepto
     QWebEngineUrlRequestInterceptor *_interceptor
       = reinterpret_cast<QWebEngineUrlRequestInterceptor*>(interceptor);
     _webEnginePage->setUrlRequestInterceptor(_interceptor);
+}
+
+char* webEnginePageUrl(void* webEnginePage) {
+    QWebEnginePage *_webEnginePage = reinterpret_cast<QWebEnginePage*>(webEnginePage);
+    return (char*)_webEnginePage->url().toString().toUtf8().data();
+}
+
+int webEnginePageIsAudioMuted(void* webEnginePage) {
+    QWebEnginePage *_webEnginePage = reinterpret_cast<QWebEnginePage*>(webEnginePage);
+    return (int)_webEnginePage->isAudioMuted();
+}
+
+void webEnginePageSetAudioMuted(void* webEnginePage, int muted) {
+    QWebEnginePage *_webEnginePage = reinterpret_cast<QWebEnginePage*>(webEnginePage);
+    _webEnginePage->setAudioMuted((bool)muted);
 }
 
 void layoutAddWidget(void* layout, void* widget) {

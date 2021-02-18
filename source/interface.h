@@ -46,6 +46,9 @@ EXTERNC void webEnginePageTriggerAction(void* webEnginePage, int action, int che
 EXTERNC void* webEnginePageAction(void* webEnginePage, int action);
 EXTERNC void* webEnginePageHistory(void* webEnginePage);
 EXTERNC void webEnginePageSetUrlRequestInterceptor(void* webEnginePage, void* interceptor);
+EXTERNC char* webEnginePageUrl(void* webEnginePage);
+EXTERNC int webEnginePageIsAudioMuted(void* webEnginePage);
+EXTERNC void webEnginePageSetAudioMuted(void* webEnginePage, int muted);
 EXTERNC void layoutAddWidget(void* layout, void* widget);
 EXTERNC void windowShow(void* window);
 EXTERNC void windowPresent(void* window);
