@@ -158,6 +158,48 @@
   (html :string))
 (export 'web-engine-page-set-html)
 
+(defcfun ("webEnginePageSetLivecycleState" web-engine-page-set-livecycle-state) :void
+  (webEnginePage :pointer)
+  (start :int))
+(export 'web-engine-page-set-livecycle-state)
+
+(defcfun ("webEnginePageLivecycleState" web-engine-page-livecycle-state) :int
+  (webEnginePage :pointer))
+(export 'web-engine-page-livecycle-state)
+
+(defcfun ("webEnginePageTriggerAction" web-engine-page-trigger-action) :void
+  (webEnginePage :pointer)
+  (action :int)
+  (checked :int))
+(export 'web-engine-page-trigger-action)
+
+(defcfun ("webEnginePageAction" web-engine-page-action) :pointer
+  (webEnginePage :pointer)
+  (action :int))
+(export 'web-engine-page-action)
+
+(defcfun ("webEnginePageHistory" web-engine-page-history) :pointer
+  (webEnginePage :pointer))
+(export 'web-engine-page-history)
+
+(defcfun ("webEnginePageSetUrlRequestInterceptor" web-engine-page-set-url-request-interceptor) :void
+  (webEnginePage :pointer)
+  (interceptor :pointer))
+(export 'web-engine-page-set-url-request-interceptor)
+
+(defcfun ("webEnginePageUrl" web-engine-page-url) :string
+    (webEnginePage :pointer))
+(export 'web-engine-page-url)
+
+(defcfun ("webEnginePageIsAudioMuted" web-engine-page-is-audio-muted) :void
+  (webEnginePage :pointer))
+(export 'web-engine-page-is-audio-muted)
+
+(defcfun ("webEnginePageSetAudioMuted" web-engine-page-set-audio-muted) :void
+  (webEnginePage :pointer)
+  (muted :int))
+(export 'web-engine-page-set-audio-muted)
+
 (defcfun ("webEnginePageRunJavaScript" %web-engine-page-run-javascript) :void
   (webEnginePage :pointer)
   (javascript :string)
