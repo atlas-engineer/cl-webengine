@@ -50,6 +50,9 @@
   (callback :pointer))
 (export 'new-key-press-filter)
 
+(defcfun ("newEmptyKeyPressFilter" new-empty-key-press-filter) :pointer)
+(export 'new-empty-key-press-filter)
+
 (defcfun ("widgetInstallKeyPressFilter" %widget-install-key-press-filter) :pointer
   (widget :pointer)
   (key-press-filter :pointer))

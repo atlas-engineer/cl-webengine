@@ -20,21 +20,22 @@ typedef void (*fpKeyPress)(int id, int keyCode, char* keyString, int modifierFla
 #endif
 
 EXTERNC void* newKeyPressFilter(int id, fpKeyPress callback);
+EXTERNC void* newEmptyKeyPressFilter();
 EXTERNC void widgetInstallKeyPressFilter(void* widget, void* keyPressFilter);
 EXTERNC int widgetIsActiveWindow(void* widget);
-EXTERNC QApplication* newQApplication(int argc, char** argv);
+EXTERNC void* newQApplication(int argc, char** argv);
 EXTERNC void* newLoadFinishedListener(int id, fpInt callback);
 EXTERNC void loadFinishedListenerConnect(void* loadStartedListener, void* webEngineView);
 EXTERNC void* newLoadStartedListener(int id, fpInt callback);
 EXTERNC void loadStartedListenerConnect(void* loadStartedListener, void* webEngineView);
 EXTERNC int applicationExec(void* application);
 EXTERNC void applicationQuit(void* application);
-EXTERNC QPushButton* newQPushButton(char* label);
-EXTERNC QWindow* newQWindow();
-EXTERNC QWidget* newQWidget();
-EXTERNC QHBoxLayout* newQHBoxLayout();
-EXTERNC QVBoxLayout* newQVBoxLayout();
-EXTERNC QWebEngineView* newQWebEngineView();
+EXTERNC void* newQPushButton(char* label);
+EXTERNC void* newQWindow();
+EXTERNC void* newQWidget();
+EXTERNC void* newQHBoxLayout();
+EXTERNC void* newQVBoxLayout();
+EXTERNC void* newQWebEngineView();
 EXTERNC char* webEngineViewUrl(void* webEngineView);
 EXTERNC void webEngineViewLoad(void* webEngineView, char* url);
 EXTERNC void* webEngineViewPage(void* webEngineView);
