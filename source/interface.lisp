@@ -301,6 +301,10 @@
   (widget :pointer))
 (export 'widget-show-full-screen)
 
+(defcfun ("widgetShowMaximized" widget-show-maximized) :void
+  (widget :pointer))
+(export 'widget-show-maximized)
+
 (defcfun ("widgetShowNormal" widget-show-normal) :void
   (widget :pointer))
 (export 'widget-show-normal)

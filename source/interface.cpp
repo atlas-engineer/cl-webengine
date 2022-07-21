@@ -282,6 +282,11 @@ void widgetShowFullScreen(void* widget) {
     _widget->showFullScreen();
 }
 
+void widgetShowMaximized(void* widget) {
+    QWidget *_widget = reinterpret_cast<QWidget*>(widget);
+    _widget->showMaximized();
+}
+
 void widgetShowNormal(void* widget) {
     QWidget *_widget = reinterpret_cast<QWidget*>(widget);
     _widget->showNormal();

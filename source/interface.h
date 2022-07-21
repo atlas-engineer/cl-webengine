@@ -65,6 +65,7 @@ EXTERNC void widgetSetFixedHeight(void* widget, int height);
 EXTERNC void widgetSetFixedSize(void* widget, int width, int height);
 EXTERNC void widgetSetWindowTitle(void* widget, char* title);
 EXTERNC void widgetShowFullScreen(void* widget);
+EXTERNC void widgetShowMaximized(void* widget);
 EXTERNC void widgetShowNormal(void* widget);
 EXTERNC void widgetPresent(void* widget);
 EXTERNC void layoutSetContentsMargins(void* layout, int left, int top, int right, int bottom);
